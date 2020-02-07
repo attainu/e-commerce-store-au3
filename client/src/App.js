@@ -1,12 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import "./App.css";
+import Nav from "./components/Nav";
+import Products from './components/Products'
+import { BrowserRouter as Router, Route } from "react-router-dom";
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <Router>
+      <div className="App container-fluid p-0 m-0">
+        <Nav />
+        <Route path="/shop" component={Products} />
+      </div>
+    </Router>
   );
 }
 
