@@ -5,7 +5,7 @@ import ProductTile from "./ProductTile";
 import Filter from "./Filter";
 
 class Products extends Component {
- 
+  
 
   componentDidMount() {
     this.props.dispatch({
@@ -14,6 +14,10 @@ class Products extends Component {
   }
 
   render() {
+    const productstomap =
+      this.props.filteredProducts.length > 0
+        ? this.props.filteredProducts
+        : this.props.products;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -23,7 +27,7 @@ class Products extends Component {
           <div className="col-xs-8 col-sm-8 col-md-10 col-lg-10">
             <div className="container-fluid">
               <div className="row">
-                {this.props.products.map(product => {
+                {productstomap.map(product => {
                   return <ProductTile product={product} />;
                 })}
               </div>
