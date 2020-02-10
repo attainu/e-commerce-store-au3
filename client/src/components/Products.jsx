@@ -5,17 +5,20 @@ import ProductTile from "./ProductTile";
 import Filter from "./Filter";
 
 class Products extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      filters:false
-    }
+      filters: false
+    };
   }
   componentDidMount() {
     this.props.dispatch({
+      type: "CLEAR_FILTERED_PRODUCTS"
+    });
+    this.props.dispatch({
       type: "FETCH_ALL_PRODUCTS"
     });
-    this.setState({filters:true});
+    this.setState({ filters: true });
   }
 
   render() {
