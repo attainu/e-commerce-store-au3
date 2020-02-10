@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../store/index";
+import { FaFilter } from "react-icons/fa";
+import { applyFilters } from "./filterLogic";
 class Filter extends Component {
   isChecked = (val, arr) => {
     return arr.indexOf(val) != -1 ? true : false;
@@ -21,6 +23,15 @@ class Filter extends Component {
           payload: e.target.value
         });
       }
+      let filteredProducts = applyFilters(
+        this.props.brandFilter,
+        this.props.filteredProducts,
+        this.props.products
+      );
+      this.props.dispatch({
+        type: "UPDATE_FILTERED_PRODUCTS",
+        payload: filteredProducts
+      });
     }
     if (e.target.name === "color") {
       console.log("here");
@@ -35,6 +46,16 @@ class Filter extends Component {
           payload: e.target.value
         });
       }
+      const filteredProducts = applyFilters(
+        this.props.colorFilter,
+        this.props.filteredProducts,
+        this.props.products
+      );
+
+      this.props.dispatch({
+        type: "UPDATE_FILTERED_PRODUCTS",
+        payload: filteredProducts
+      });
     }
   };
 
@@ -43,7 +64,9 @@ class Filter extends Component {
       this.props.dispatch({
         type: "CLEAR_BRAND_FILTER"
       });
-    }if (type==="colors"){
+    }
+
+    if (type === "colors") {
       this.props.dispatch({
         type: "CLEAR_COLOR_FILTER"
       });
@@ -60,10 +83,12 @@ class Filter extends Component {
   render() {
     return (
       <div className="container text-white d-flex justify-content-center">
-        <div className="">
-          <h2 className="mb-5 mt-2">Filters</h2>
+        <div className="mb-5  mt-2">
+          <div className="d-flex justify-content-between align-items-center">
+            <h4>Filters</h4>
+            <FaFilter className="mx-2" />
+          </div>
           <h5>Brands</h5>
-          {/* this we need to map  */}
           <div className="m-3">
             {this.props.filterList.brands.map((brand, index) => {
               return (

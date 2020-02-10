@@ -5,17 +5,22 @@ import ProductTile from "./ProductTile";
 import Filter from "./Filter";
 
 class Products extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      filters:false
-    }
+      filters: false
+    };
   }
   componentDidMount() {
     this.props.dispatch({
-      type: "FETCH_ALL_PRODUCTS"
+      type: "CLEAR_FILTERED_PRODUCTS"
     });
-    this.setState({filters:true});
+    this.props.dispatch({
+      type: "FETCH_ALL_PRODUCTS",
+      gender: this.props.match.params.gender,
+      category : this.props.match.params.category_id
+    });
+    this.setState({ filters: true });
   }
 
   render() {
