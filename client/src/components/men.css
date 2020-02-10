@@ -1,0 +1,12 @@
+.cat-page-container {
+  background-image: url("https://i.ibb.co/YRBPSRv/shop.jpg");
+  height: 90vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: auto;
+}
+
+
+.cat-page-container::-webkit-scrollbar {
+  display: none;
+}

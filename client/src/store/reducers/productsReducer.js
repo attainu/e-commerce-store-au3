@@ -6,7 +6,7 @@ const productsReducer = (
   action
 ) => {
   if (action.type === "FETCH_ALL_PRODUCTS") {
-    fetchProducts(store);
+    fetchProducts(store,action.gender,action.category);
   }
   if (action.type === "UPDATE_ALL_PRODUCTS") {
     return (products = action.payload);

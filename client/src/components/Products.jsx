@@ -16,7 +16,9 @@ class Products extends Component {
       type: "CLEAR_FILTERED_PRODUCTS"
     });
     this.props.dispatch({
-      type: "FETCH_ALL_PRODUCTS"
+      type: "FETCH_ALL_PRODUCTS",
+      gender: this.props.match.params.gender,
+      category : this.props.match.params.category_id
     });
     this.setState({ filters: true });
   }

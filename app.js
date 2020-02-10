@@ -32,7 +32,7 @@ app.get('/', async (req, res)=>{
   res.send(products);
 });
 
-app.get('/men', async (req, res)=>{
+app.get('/categories', async (req, res)=>{
   await Categories.findAll({
     attributes: ['category_id', 'category_name'],
     include: [{
@@ -45,7 +45,7 @@ app.get('/men', async (req, res)=>{
   });
 });
 
-app.get('/men/:id', async (req, res) => {
+app.get('/product/:id', async (req, res) => {
   const id = req.params.id;  
   await Categories.findAll({
     where:{
