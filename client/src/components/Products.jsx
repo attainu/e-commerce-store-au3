@@ -5,12 +5,17 @@ import ProductTile from "./ProductTile";
 import Filter from "./Filter";
 
 class Products extends Component {
-  
-
+  constructor(){
+    super();
+    this.state = {
+      filters:false
+    }
+  }
   componentDidMount() {
     this.props.dispatch({
       type: "FETCH_ALL_PRODUCTS"
     });
+    this.setState({filters:true});
   }
 
   render() {
@@ -22,7 +27,7 @@ class Products extends Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-xs-4 col-sm-4 col-md-2 col-lg-2 bg-dark">
-            <Filter />
+            {this.state.filters && <Filter />}
           </div>
           <div className="col-xs-8 col-sm-8 col-md-10 col-lg-10">
             <div className="container-fluid">
