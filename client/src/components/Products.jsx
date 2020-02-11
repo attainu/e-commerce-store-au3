@@ -38,7 +38,7 @@ class Products extends Component {
             <div className="container-fluid">
               <div className="row">
                 {productstomap.map(product => {
-                  return <ProductTile product={product} />;
+                  return <ProductTile key={product.product_id} product={product} />;
                 })}
               </div>
             </div>
