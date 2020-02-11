@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Men from "./components/Men";
 import Women from "./components/Women";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/men" component={Men} />
         <Route exact path="/women" component={Women} />
+        <Route exact path="/login" component={Login} />
 
         <Route path="/shop/:gender/:category_id" component={Products} />
       </div>
