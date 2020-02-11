@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 import productsReducer from "./productsReducer";
 import filteredProductsReducer from './filteredProductsReducer' ;
-import brandFilterReducer from './brandFilterReducer';
+// import brandFilterReducer from './brandFilterReducer';
+import brandFilterReducer from '../filter/reducers/brandFilterReducer';
 import categoryFilterReducer from './categoryFilterReducer'
 import colorFilterReducer from './colorFilterReducer';
 import filterListReducer from './filterListReducer'

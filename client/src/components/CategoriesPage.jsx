@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {FaShoppingBag} from 'react-icons/fa'
 // import { connect } from "react-redux";
 // import { mapStateToProps } from "../store";
