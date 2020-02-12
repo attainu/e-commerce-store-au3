@@ -1,5 +1,3 @@
-import { bindActionCreators } from "redux";
-
 export const fetchAllProducts = (gender, category) => {
   return {
     type: "FETCH_ALL_PRODUCTS",

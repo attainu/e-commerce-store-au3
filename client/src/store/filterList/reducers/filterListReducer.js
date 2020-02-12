@@ -10,7 +10,7 @@ const filterListReducer = (
     let brands = [],
       colors = [],
       categories = [];
-    action.payload.map(product => {
+    action.payload.forEach(product => {
       brands.push(product.brand);
       colors.push(product.color);
       categories.push(product.cat_id);
