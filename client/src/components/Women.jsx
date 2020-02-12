@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { mapStateToProps } from "../store";
 import "./men.css";
 import CategoriesPage from "./CategoriesPage";
-import { createCategories } from "./categoryLogic";
+import { createCategories } from "./logic/categoryLogic";
 class Women extends Component {
   render() {
     //  we need to extract categories belong to men
@@ -13,7 +13,7 @@ class Women extends Component {
       <div className="cat-page-container">
         <div className="container-fluid h-100">
           <div className="row h-100 d-flex justify-content-center align-items-center">
-            <CategoriesPage categories={fCategories} />
+            <CategoriesPage gender={"women"} categories={fCategories} />
           </div>
         </div>
       </div>

@@ -1,12 +1,11 @@
 import { applyFilters } from "../../../components/logic/filterLogic";
 
-export const removeBrandFilter = data => {
+export const removeColorFilter = data => {
   return (dispatch, getState) => {
     dispatch({
-      type: "REMOVE_BRAND_FILTER",
+      type: "REMOVE_COLOR_FILTER",
       payload: data
     });
-    console.log(getState());
     let { brandFilter, colorFilter, products } = getState();
     let filteredProduct = applyFilters(products, brandFilter, colorFilter);
     dispatch({
@@ -16,10 +15,10 @@ export const removeBrandFilter = data => {
   };
 };
 
-export const addBrandFilter = data => {
+export const addColorFilter = data => {
   return (dispatch, getState) => {
     dispatch({
-      type: "ADD_BRAND_FILTER",
+      type: "ADD_COLOR_FILTER",
       payload: data
     });
     let { brandFilter, colorFilter, products } = getState();
@@ -32,10 +31,10 @@ export const addBrandFilter = data => {
   };
 };
 
-export const clearBrandFilter = () => {
+export const clearColorFilter = () => {
   return (dispatch, getState) => {
     dispatch({
-      type: "CLEAR_BRAND_FILTER"
+      type: "CLEAR_COLOR_FILTER"
     });
     let { brandFilter, colorFilter, products } = getState();
     let filteredProduct = applyFilters(products, brandFilter, colorFilter);
