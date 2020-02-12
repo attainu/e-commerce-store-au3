@@ -1,5 +1,5 @@
-import { fetchProducts } from "../api/get";
-import { store } from "../../store";
+import { fetchProducts } from "../../api/get";
+import { store } from "../..";
 
 const productsReducer = (products = [], action) => {
   if (action.type === "FETCH_ALL_PRODUCTS") {

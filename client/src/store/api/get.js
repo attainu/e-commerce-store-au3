@@ -20,7 +20,7 @@ const fetchProducts = (store, gender, category) => {
     });
 };
 
-const fetchCategories = store => {
+const fetchCategoriesFn = store => {
   let url = `${API_ORIGIN_URL}/categories`;
   fetch(url, {
     method: "GET",
@@ -36,4 +36,4 @@ const fetchCategories = store => {
       });
     });
 };
-export { fetchProducts, fetchCategories };
+export { fetchProducts, fetchCategoriesFn };
