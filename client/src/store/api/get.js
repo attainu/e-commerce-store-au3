@@ -9,12 +9,15 @@ const fetchProducts = (store, gender, category) => {
   })
     .then(data => data.json())
     .then(data => {
-
       store.dispatch({
         type: "UPDATE_ALL_PRODUCTS",
         payload: data[0].products
       });
-     });
+      store.dispatch({
+        type: "CREATE_FILTER_LIST",
+        payload: data[0].products
+      });
+    });
 };
 
 const fetchCategories = store => {

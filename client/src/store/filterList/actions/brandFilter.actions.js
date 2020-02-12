@@ -24,21 +24,10 @@ export const addBrandFilter = data => {
     });
     let { brandFilter, colorFilter, products } = getState();
     let filteredProduct = applyFilters(products, brandFilter, colorFilter);
-
-    dispatch({
-      type: "UPDATE_FILTERED_PRODUCTS",
-      payload: filteredProduct
-    });
-  };
-};
-
-export const clearBrandFilter = () => {
-  return (dispatch, getState) => {
-    dispatch({
-      type: "CLEAR_BRAND_FILTER"
-    });
-    let { brandFilter, colorFilter, products } = getState();
-    let filteredProduct = applyFilters(products, brandFilter, colorFilter);
+    // console.log("hi");
+    // console.log(getState());
+    // console.log("FilteredProduct");
+    // console.log(filteredProduct);
     dispatch({
       type: "UPDATE_FILTERED_PRODUCTS",
       payload: filteredProduct

@@ -1,4 +1,4 @@
-const loginReducer = (isLoggedIn = null, action) => {
+const isLoggedInReducer = (isLoggedIn = null, action) => {
   if (action.type === "UPDATE_LOGGEDIN_USER") {
     return (isLoggedIn = action.payload);
   }
@@ -11,4 +11,4 @@ const loginReducer = (isLoggedIn = null, action) => {
   return isLoggedIn;
 };
 
-export default loginReducer;
+export default isLoggedInReducer;

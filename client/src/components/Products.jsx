@@ -13,21 +13,27 @@ class Products extends Component {
   }
   componentDidMount() {
     this.props.dispatch({
-      type: "CLEAR_FILTERED_PRODUCTS"
-    });
-    this.props.dispatch({
       type: "FETCH_ALL_PRODUCTS",
       gender: this.props.match.params.gender,
-      category : this.props.match.params.category_id
+      category: this.props.match.params.category_id
     });
+
     this.setState({ filters: true });
   }
 
+  componentWillUnmount() {
+    this.props.dispatch({
+      type: "CLEAR_ALL_PRODUCTS"
+    });
+    this.props.dispatch({
+      type: "CLEAR_FILTERED_PRODUCTS"
+    });
+    this.props.dispatch({
+      type: "CLEAR_FILTER_LIST"
+    });
+  }
+
   render() {
-    const productstomap =
-      this.props.filteredProducts.length > 0
-        ? this.props.filteredProducts
-        : this.props.products;
     return (
       <div className="container-fluid">
         <div className="row">
@@ -37,8 +43,10 @@ class Products extends Component {
           <div className="col-xs-8 col-sm-8 col-md-10 col-lg-10">
             <div className="container-fluid">
               <div className="row">
-                {productstomap.map(product => {
-                  return <ProductTile key={product.product_id} product={product} />;
+                {this.props.filteredProducts.map(product => {
+                  return (
+                    <ProductTile key={product.product_id} product={product} />
+                  );
                 })}
               </div>
             </div>
