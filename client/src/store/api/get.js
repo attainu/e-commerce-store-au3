@@ -17,6 +17,10 @@ const fetchProducts = (store, gender, category) => {
         type: "CREATE_FILTER_LIST",
         payload: data[0].products
       });
+      store.dispatch({
+        type: "UPDATE_FILTERED_PRODUCTS",
+        payload: data[0].products
+      });
     });
 };
 

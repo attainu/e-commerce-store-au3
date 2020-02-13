@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../store";
 import { Link } from "react-router-dom";
+import { animationShow, animationHide } from "./logic/navAnimationLogic";
+import CategoriesDropdown from "./CategoriesDropdown";
 class Nav extends Component {
   constructor() {
     super();
@@ -56,15 +58,47 @@ class Nav extends Component {
                 Home
               </Link>
             </li>
-            <li className="nav-item px-auto">
-              <Link className="nav-link font-weight-bold" to="/men">
+            <li className="nav-item dropdown px-auto">
+              <Link
+                className="nav-link font-weight-bold"
+                onMouseOver={e => animationShow(this.refs.maleCategoryBox)}
+                onMouseLeave={e => animationHide(this.refs.maleCategoryBox)}
+                to="/men"
+              >
                 Men
               </Link>
+              <div
+                class="dropdown-menu"
+                ref="maleCategoryBox"
+                onMouseOver={e => animationShow(this.refs.maleCategoryBox)}
+                onMouseLeave={e => animationHide(this.refs.maleCategoryBox)}
+              >
+                <CategoriesDropdown
+                  gender="men"
+                  categories={this.props.categories}
+                />
+              </div>
             </li>
-            <li className="nav-item px-auto">
-              <Link className="nav-link font-weight-bold" to="/women">
+            <li className="nav-item dropdown px-auto">
+              <Link
+                className="nav-link font-weight-bold"
+                to="/women"
+                onMouseOver={e => animationShow(this.refs.femaleCategoryBox)}
+                onMouseLeave={e => animationHide(this.refs.femaleCategoryBox)}
+              >
                 Women
               </Link>
+              <div
+                class="dropdown-menu"
+                ref="femaleCategoryBox"
+                onMouseOver={e => animationShow(this.refs.femaleCategoryBox)}
+                onMouseLeave={e => animationHide(this.refs.femaleCategoryBox)}
+              >
+                <CategoriesDropdown
+                  gender="women"
+                  categories={this.props.categories}
+                />
+              </div>
             </li>
             {this.state.width > 991 ? (
               <li className="nav-item px-5 d-flex align-items-center">
@@ -83,8 +117,13 @@ class Nav extends Component {
                 Cart
               </Link>
             </li>
-            <li className="nav-item px-auto">
-              <Link className="nav-link font-weight-bold" to="/login">
+            <li className="nav-item px-auto dropdown">
+              <Link
+                className="nav-link font-weight-bold"
+                to="/login"
+                onMouseOver={e => animationShow(this.refs.dropdownBox)}
+                onMouseLeave={e => animationHide(this.refs.dropdownBox)}
+              >
                 LogIn
               </Link>
             </li>
@@ -95,7 +134,10 @@ class Nav extends Component {
             </li>
             {this.props.isLoggedIn ? (
               <li className="nav-item px-auto">
-                <Link className="nav-link font-weight-bold" to="/logout">
+                <Link
+                  className="nav-link text-danger font-weight-bold"
+                  to="/logout"
+                >
                   Logout
                 </Link>
               </li>
