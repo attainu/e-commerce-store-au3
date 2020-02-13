@@ -6,7 +6,6 @@ export const removeBrandFilter = data => {
       type: "REMOVE_BRAND_FILTER",
       payload: data
     });
-    console.log(getState());
     let { brandFilter, colorFilter, products } = getState();
     let filteredProduct = applyFilters(products, brandFilter, colorFilter);
     dispatch({

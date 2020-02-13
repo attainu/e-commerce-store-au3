@@ -10,7 +10,7 @@ const applyFilters = (products, brandFilter = [], colorFilter = []) => {
       if (brandFilter.includes(products[i].brand))
         brandProducts.push(products[i]);
   }
-  if (colorLen > 0) {
+  else if (colorLen > 0) {
     for (let i = 0; i < len; i++)
       if (colorFilter.includes(products[i].color))
         colorProducts.push(products[i]);
