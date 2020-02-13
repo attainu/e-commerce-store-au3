@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const db = require("../database");
+const db = require('../config/database')
 
 const Users = db.define(
   "users",
@@ -26,7 +26,7 @@ const Users = db.define(
       allowNull: false
     },
     mobile: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: false
     },
     address: {
