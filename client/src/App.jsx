@@ -19,7 +19,6 @@ function App() {
         <Route exact path="/women" component={Women} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-
         <Route path="/shop/:gender/:category_id" component={Products} />
       </div>
     </Router>
