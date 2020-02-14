@@ -11,7 +11,7 @@ function CategoriesDropdown(props) {
     <div>
       {categories.map(category => {
         return (
-          <li className="dropdown-item my-3">
+          <div key={category.category_id +22343} className="dropdown-item my-3">
             <span className="p-2 rounded border border-dark">{icon}</span>
             <Link
               to={`/shop/${props.gender}/${category.category_id}`}
@@ -19,7 +19,7 @@ function CategoriesDropdown(props) {
             >
               {category.category_name.toUpperCase()}
             </Link>
-          </li>
+          </div>
         );
       })}
     </div>

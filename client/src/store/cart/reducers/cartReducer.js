@@ -8,12 +8,24 @@ const cartReducer = (cart = [], action) => {
     return (cart = action.payload);
   }
   if (action.type === "ADD_TO_CART") {
-    return (cart = [...cart, action.payload]);
+    // let newCart = [...cart];
+    // let index = newCart.indexOf(action.payload);
+    // if (index >= 0) {
+    //   newCart[index].qty = newCart[index].qty + 1;
+    // } else {
+    //   newCart = [...cart, action.payload];
+    // }
+
+    return (cart = action.payload);
   }
   if (action.type === "REMOVE_FROM_CART") {
     let newCart = [...cart];
     let index = newCart.indexOf(action.payload);
-    newCart.splice(index, 1);
+    if (newCart[index].qty > 1) {
+      newCart[index].qty = newCart[index].qty - 1;
+    } else {
+      newCart.splice(index, 1);
+    }
     return (cart = newCart);
   }
   if (action.type === "CLEAR_CART") {

@@ -47,8 +47,12 @@ class Products extends Component {
               <div className="row">
                 {this.props.filteredProducts.map(product => {
                   return (
-                    
-                    <ProductTile key={product.product_id} product={product} cart={this.props.cart} />
+                    <ProductTile
+                      key={product.product_id}
+                      product={product}
+                      cart={this.props.cart}
+                      wishlist={this.props.wishlist}
+                    />
                   );
                 })}
               </div>

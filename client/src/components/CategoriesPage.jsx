@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 const CategoriesPage = props => {
   return (
     <>
-      {props.categories.map(category => {
+      {props.categories.map((category, index) => {
         return (
           <div
             className="col-md-2 col-sm-12 m-0 p-3 "
             style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+            key={index + 64573}
           >
             <div className="container-fluid">
               <div className="row d-flex justify-content-center align-items-center">

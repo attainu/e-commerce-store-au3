@@ -12,15 +12,37 @@ export const updateCartItems = payload => {
   };
 };
 
-export const addToCart = id => {
-  console.log(id)
-  return {
-    type: "ADD_TO_CART",
-    payload: {
-      product_id: id,
-      qty: 1
+export const addToCart = (id, cart) => {
+  let index;
+  let action;
+  let newCart = [...cart];
+  cart.map((item, idx) => {
+    if (item.product_id === id) {
+      index = idx;
     }
-  };
+  });
+
+  if (index >= 0) {
+    newCart[index].qty = newCart[index].qty + 1;
+
+    action = {
+      type: "ADD_TO_CART",
+      payload: newCart
+    };
+  } else {
+    action = {
+      type: "ADD_TO_CART",
+      payload: [
+        ...cart,
+        {
+          product_id: id,
+          qty: 1
+        }
+      ]
+    };
+  }
+
+  return action;
 };
 
 export const removeFromCart = payload => {
