@@ -4,11 +4,9 @@ import { GiTShirt } from "react-icons/gi";
 import { createCategories } from "./logic/categoryLogic";
 import { Link } from "react-router-dom";
 function CategoriesDropdown(props) {
-  console.log(props.categories, props.gender);
   const icon = props.gender === "men" ? <FaTshirt /> : <GiTShirt />;
   const categories = createCategories(props.categories, props.gender);
 
-  console.log(categories);
   return (
     <div>
       {categories.map(category => {

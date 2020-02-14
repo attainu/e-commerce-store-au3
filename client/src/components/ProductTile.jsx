@@ -1,4 +1,5 @@
 import React from "react";
+import AddToCart from "./AddToCart";
 
 function ProductTile(props) {
   return (
@@ -33,9 +34,11 @@ function ProductTile(props) {
         </div>
         <div className="container-fluid">
           <div className="row">
-            <button className="btn btn-success w-100 h-100 py-3 rounded-0">
-              Add To Bag
-            </button>
+            <AddToCart
+              key={props.product_id+123}
+              product_id={props.product.product_id}
+              cart={props.cart}
+            />
           </div>
           <div className="row">
             <button className="btn btn-danger w-100 h-100 rounded-0 py-3">
