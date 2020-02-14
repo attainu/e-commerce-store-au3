@@ -12,13 +12,13 @@ const db = require("./server/config/database");
 db.authenticate()
     .then(() => {
         console.log("Connection to DB has been established successfully.");
-        app.use(cors());
-        app.listen(PORT || 3001);
     })
     .catch(err => {
         console.error("Unable to connect to the DB:", err);
     });
 
+app.listen(PORT || 3001);
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended:false
