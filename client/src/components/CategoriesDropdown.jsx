@@ -8,21 +8,24 @@ function CategoriesDropdown(props) {
   const categories = createCategories(props.categories, props.gender);
 
   return (
-    <div>
+    <>
       {categories.map(category => {
         return (
-          <div key={category.category_id +22343} className="dropdown-item my-3">
-            <span className="p-2 rounded border border-dark">{icon}</span>
+          <div
+            key={category.category_id + 22343}
+            className="alert alert-dark rounded-0 border-0 dropdown-item m-0"
+          >
+            <span className="px-2">{icon}</span>
             <Link
               to={`/shop/${props.gender}/${category.category_id}`}
-              className=" p-2 text-muted"
+              className="text-muted m-0 p-0"
             >
               {category.category_name.toUpperCase()}
             </Link>
           </div>
         );
       })}
-    </div>
+    </>
   );
 }
 

@@ -1,4 +1,4 @@
-const applyFilters = (products, brandFilter = [], colorFilter = []) => {
+export const applyFilters = (products, brandFilter = [], colorFilter = []) => {
   let filtered = [];
   let len = products.length;
   let brandProducts = [],
@@ -9,8 +9,7 @@ const applyFilters = (products, brandFilter = [], colorFilter = []) => {
     for (let i = 0; i < len; i++)
       if (brandFilter.includes(products[i].brand))
         brandProducts.push(products[i]);
-  }
-  else if (colorLen > 0) {
+  } else if (colorLen > 0) {
     for (let i = 0; i < len; i++)
       if (colorFilter.includes(products[i].color))
         colorProducts.push(products[i]);
@@ -35,4 +34,22 @@ const applyFilters = (products, brandFilter = [], colorFilter = []) => {
     : products;
 };
 
-export { applyFilters };
+export const getCount = (filteredArr, type, value) => {
+  let count = 0;
+
+  if (type === "brand") {
+    filteredArr.map(val => {
+      if (val.brand === value) {
+        count = count + 1;
+      }
+    });
+  }
+  if (type === "color") {
+    filteredArr.map(val => {
+      if (val.color === value) {
+        count = count + 1;
+      }
+    });
+  }
+  return count;
+};

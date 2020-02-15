@@ -6,6 +6,7 @@ import { animationShow, animationHide } from "./logic/navAnimationLogic";
 import CategoriesDropdown from "./CategoriesDropdown";
 import CartDropdown from "./CartDropdown";
 import WishlistDropdown from "./WishlistDropdown";
+import Badge from "./Badge";
 class Nav extends Component {
   constructor() {
     super();
@@ -70,7 +71,7 @@ class Nav extends Component {
                 Men
               </Link>
               <div
-                className="dropdown-menu"
+                className="dropdown-menu p-0"
                 ref="maleCategoryBox"
                 onMouseOver={e => animationShow(this.refs.maleCategoryBox)}
                 onMouseLeave={e => animationHide(this.refs.maleCategoryBox)}
@@ -91,7 +92,7 @@ class Nav extends Component {
                 Women
               </Link>
               <div
-                className="dropdown-menu"
+                className="dropdown-menu p-0"
                 ref="femaleCategoryBox"
                 onMouseOver={e => animationShow(this.refs.femaleCategoryBox)}
                 onMouseLeave={e => animationHide(this.refs.femaleCategoryBox)}
@@ -117,6 +118,7 @@ class Nav extends Component {
                 onMouseLeave={e => animationHide(this.refs.wishlistBox)}
               >
                 Wishlist
+                <Badge count={this.props.wishlist.length} />
               </Link>
               <div
                 className="dropdown-menu"
@@ -136,6 +138,7 @@ class Nav extends Component {
                 onMouseLeave={e => animationHide(this.refs.cartBox)}
               >
                 Cart
+                <Badge count={this.props.cart.length} />
               </Link>
               <div
                 className="dropdown-menu"

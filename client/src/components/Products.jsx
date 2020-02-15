@@ -27,7 +27,6 @@ class Products extends Component {
   }
 
   componentWillUnmount() {
-    this.props.dispatch(clearAllProducts());
     this.props.dispatch(clearFilteredProducts());
     this.props.dispatch(clearFilterList());
   }
