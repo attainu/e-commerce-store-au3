@@ -12,7 +12,7 @@ const CartDropdown = props => {
         {props.cart.map((item, index) => {
           return (
             <div
-              className="dropdown-item my-3"
+              className="dropdown-item my-0 py-3"
               key={index + 63872}
               
             >
@@ -35,7 +35,7 @@ const CartDropdown = props => {
         })}
 
         <p
-          className="font-weight-bold text-danger text-center "
+          className="font-weight-bold text-danger py-3 text-center "
           onClick={e => dispatch(clearCart())}
           style={{ cursor: "pointer" }}
         >
@@ -44,7 +44,7 @@ const CartDropdown = props => {
       </>
     );
   } else {
-    return <p className="text-center text-danger m-0 p-2">Cart is empty !!!</p>;
+    return <p className="text-center text-danger  m-0 py-3">Cart is empty !!!</p>;
   }
 };
 

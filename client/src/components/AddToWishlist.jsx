@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import {FaPlus, FaMinus} from 'react-icons/fa'
 import {
   removeFromWishlist,
   addToWishlist
@@ -17,14 +18,18 @@ const AddToWishlist = props => {
           className="btn btn-danger w-100 h-100 rounded-0 py-3 px-auto"
           onClick={e => dispatch(removeFromWishlist(props.product_id))}
         >
-          Remove From Wishlist
+          <h6 className="m-0 p-0">
+            WishList <FaMinus />
+          </h6>
         </button>
       ) : (
         <button
           className="btn btn-warning w-100 h-100 rounded-0 py-3"
           onClick={e => dispatch(addToWishlist(props.product_id))}
         >
-          Add To Wishlist
+          <h6 className="m-0 p-0">
+            WishList <FaPlus />
+          </h6>
         </button>
       )}
     </>

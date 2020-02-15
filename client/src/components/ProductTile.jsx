@@ -4,8 +4,14 @@ import AddToWishlist from "./AddToWishlist";
 
 function ProductTile(props) {
   return (
-    <div className="col-md-6 col-sm-12 col-lg-3">
-      <div className="card shadow shadow-sm mb-4" style={{ width: "100%" }}>
+    <div
+      className={
+        props.purpose === "cartDisplay"
+          ? "col-md-4 col-sm-6 col-lg-2"
+          : "col-md-6 col-sm-12 col-lg-3"
+      }
+    >
+      <div className="card shadow shadow-sm mb-4">
         <img
           alt="product_image"
           className="card-img-top"
@@ -14,24 +20,23 @@ function ProductTile(props) {
         <div className="card-body ">
           <p
             className="text-justify"
-            style={{ fontSize: "0.9rem", height: "2.5rem", fontWeight: "bold" }}
+            style={{
+              fontWeight: "bold"
+            }}
           >
-            {props.product.name}
+            {props.product.name.substring(0, 25)}...
           </p>
 
-          <div className="row">
-            <div className="col-3">
-              <h6 className="text-left ">{props.product.brand}</h6>
-            </div>
-            <div className="col-9">
-              <p className="text-danger text-right font-weight-bold">
-                <span className="mr-3 text-success">
-                  ₹{props.product.price}
-                </span>
-                <s>₹{props.product.price + (props.product.price - 300)}</s>
-              </p>
-            </div>
-          </div>
+          <h6 className="text-left font-weight-bold">{props.product.brand}</h6>
+
+          <p className="text-danger font-weight-bold">
+            <span className="font-weight-bold mr-2 text-success">
+              ₹{props.product.price}
+            </span>
+            <small className="font-weight-bold">
+              <s>₹{props.product.price + (props.product.price - 300)}</s>
+            </small>
+          </p>
         </div>
         <div className="container-fluid">
           <div className="row">

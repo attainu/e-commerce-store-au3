@@ -121,7 +121,7 @@ class Nav extends Component {
                 <Badge count={this.props.wishlist.length} />
               </Link>
               <div
-                className="dropdown-menu"
+                className="dropdown-menu alert alert-secondary rounded-0 p-0 m-0"
                 style={{ width: "450px" }}
                 ref="wishlistBox"
                 onMouseOver={e => animationShow(this.refs.wishlistBox)}
@@ -141,7 +141,7 @@ class Nav extends Component {
                 <Badge count={this.props.cart.length} />
               </Link>
               <div
-                className="dropdown-menu"
+                className="alert alert-secondary dropdown-menu rounded-0 p-0 m-0"
                 style={{ width: "400px" }}
                 ref="cartBox"
                 onMouseOver={e => animationShow(this.refs.cartBox)}

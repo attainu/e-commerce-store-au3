@@ -11,11 +11,7 @@ const WishlistDropdown = props => {
       <>
         {props.wishlist.map((item, index) => {
           return (
-            <div
-              className="dropdown-item my-3"
-              key={index + 43537}
-             
-            >
+            <div className="dropdown-item my-0 py-3" key={index + 43537}>
               <div className="row">
                 <div className="col-6 d-flex justify-content-center align-items-center">
                   <h6 className="text-center">
@@ -36,7 +32,7 @@ const WishlistDropdown = props => {
           );
         })}
         <p
-          className="font-weight-bold text-danger text-center "
+          className="font-weight-bold text-danger text-center py-3"
           onClick={e => dispatch(clearWishlist())}
           style={{ cursor: "pointer" }}
         >
@@ -46,7 +42,7 @@ const WishlistDropdown = props => {
     );
   } else {
     return (
-      <p className="text-center text-danger m-0 p-2">Wishlist is empty !!!</p>
+      <p className="text-center text-danger m-0 py-3">Wishlist is empty !!!</p>
     );
   }
 };

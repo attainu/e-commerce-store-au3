@@ -53,7 +53,7 @@ class Filter extends Component {
     return (
       <div className="container text-white d-flex justify-content-center">
         <div className="mb-5  mt-2">
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-between align-items-center my-3">
             <h4>Filters</h4>
             <FaFilter className="mx-2" />
           </div>

@@ -7,20 +7,20 @@ const Cart = props => {
     <div className="container-fluid">
       <div className="row">
         {props.cartArr.map(item => {
-        return props.products.map(product => {
-          if (item.product_id === product.product_id) {
-            return (
-              <ProductTile
-                key={product.product_id}
-                product={product}
-                cart={props.cartArr}
-                wishlist={props.wishlist}
-              />
-            );
-          }
-        });  
-          })
-        }
+          return props.products.map(product => {
+            if (item.product_id === product.product_id) {
+              return (
+                <ProductTile
+                  key={product.product_id}
+                  product={product}
+                  cart={props.cartArr}
+                  wishlist={props.wishlist}
+                  purpose="cartDisplay"
+                />
+              );
+            }
+          });
+        })}
       </div>
     </div>
   );
