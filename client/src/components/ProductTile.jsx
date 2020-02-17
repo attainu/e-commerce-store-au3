@@ -42,6 +42,7 @@ function ProductTile(props) {
           <div className="row">
             <div className="col-6 p-0">
               <AddToCart
+                product={props.product}
                 key={props.product_id + 123}
                 product_id={props.product.product_id}
                 cart={props.cart}

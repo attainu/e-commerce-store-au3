@@ -1,20 +1,16 @@
 import { store } from "../../../store";
+import { fetchCartItemsApi } from "../../api/get";
+import { uploadCart } from "../../api/post";
 
 const cartReducer = (cart = [], action) => {
   if (action.type === "FETCH_CART_ITEMS") {
-    // fetch cart api will go here we are getting user_id
+    fetchCartItemsApi(store, action.payload);
   }
   if (action.type === "UPDATE_CART_ITEMS") {
     return (cart = action.payload);
   }
   if (action.type === "ADD_TO_CART") {
-    // let newCart = [...cart];
-    // let index = newCart.indexOf(action.payload);
-    // if (index >= 0) {
-    //   newCart[index].qty = newCart[index].qty + 1;
-    // } else {
-    //   newCart = [...cart, action.payload];
-    // }
+  
 
     return (cart = action.payload);
   }
@@ -31,9 +27,18 @@ const cartReducer = (cart = [], action) => {
   if (action.type === "CLEAR_CART") {
     return (cart = []);
   }
+
+  if (action.type === "DELETE_FROM_CART") {
+    let newCart = [...cart];
+    let index = newCart.indexOf(action.payload);
+    newCart.splice(index, 1);
+    return (cart = newCart);
+  }
+
   if (action.type === "UPLOAD_CART") {
     //post api to upload cart to server
     //we are getting whole cart in action.payload as an array []
+    uploadCart(action.cart, action.userId);
   }
   return cart;
 };

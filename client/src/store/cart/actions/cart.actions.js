@@ -5,19 +5,36 @@ export const fetchCartItems = payload => {
   };
 };
 
-export const updateCartItems = payload => {
+export const uploadCartToServer = (cart, userId) => {
   return {
-    type: "UPDATE_CART_ITEMS",
-    payload: payload
+    type: "UPLOAD_CART",
+    cart,
+    userId
   };
 };
 
-export const addToCart = (id, cart) => {
+export const updateCartItems = payload => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: "UPDATE_CART_ITEMS",
+      payload: payload
+    });
+
+    let { cart } = getState();
+
+    dispatch(uploadCartToServer(cart, 1));
+
+    //need dynamic id in future
+  };
+};
+
+export const addToCart = (product, cart) => {
   let index;
-  let action;
+  console.log([...cart]);
+
   let newCart = [...cart];
   cart.map((item, idx) => {
-    if (item.product_id === id) {
+    if (item.product_id === product.product_id) {
       index = idx;
     }
   });
@@ -25,42 +42,81 @@ export const addToCart = (id, cart) => {
   if (index >= 0) {
     newCart[index].qty = newCart[index].qty + 1;
 
-    action = {
-      type: "ADD_TO_CART",
-      payload: newCart
+    return (dispatch, getState) => {
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: newCart
+      });
+
+      let { cart } = getState();
+
+      dispatch(uploadCartToServer(cart, 1));
     };
-  } else {
-    action = {
-      type: "ADD_TO_CART",
-      payload: [
-        ...cart,
-        {
-          product_id: id,
-          qty: 1
-        }
-      ]
+  } else if (cart.length > 0) {
+    return (dispatch, getState) => {
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: [
+          ...newCart,
+          {
+            ...product,
+            qty: 1
+          }
+        ]
+      });
+      let { cart } = getState();
+
+      dispatch(uploadCartToServer(cart, 1));
+    };
+  } else if (cart.length === 0) {
+    return (dispatch, getState) => {
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: [
+          {
+            ...product,
+            qty: 1
+          }
+        ]
+      });
+      let { cart } = getState();
+
+      dispatch(uploadCartToServer(cart, 1));
     };
   }
-
-  return action;
 };
 
 export const removeFromCart = payload => {
-  return {
-    type: "REMOVE_FROM_CART",
-    payload: payload
+  return (dispatch, getState) => {
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: payload
+    });
+    let { cart } = getState();
+
+    dispatch(uploadCartToServer(cart, 1));
   };
 };
 
 export const clearCart = () => {
-  return {
-    type: "CLEAR_CART"
+  return (dispatch, getState) => {
+    dispatch({
+      type: "CLEAR_CART"
+    });
+    let { cart } = getState();
+
+    dispatch(uploadCartToServer(cart, 1));
   };
 };
 
-export const uploadCartToServer = payload => {
-  return {
-    type: "UPLOAD_CART",
-    payload: payload
+export const deleteFromCart = payload => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: "DELETE_FROM_CART",
+      payload: payload
+    });
+    let { cart } = getState();
+
+    dispatch(uploadCartToServer(cart, 1));
   };
 };
