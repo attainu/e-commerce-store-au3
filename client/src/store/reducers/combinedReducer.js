@@ -6,7 +6,8 @@ import colorFilterReducer from "../filter/reducers/colorFilterReducer";
 import filterListReducer from "../filterList/reducers/filterListReducer";
 import categoriesReducer from "../categories/reducers/categoriesReducer";
 import filteredProductsReducer from "../filteredProducts/reducers/filteredProductsReducer";
-
+import cartReducer from "../cart/reducers/cartReducer";
+import wishlistReducer from "../wishlist/reducers/wishlistReducer";
 const combinedReducers = combineReducers({
   isLoggedIn: isLoggedInReducer,
   products: productsReducer,
@@ -14,7 +15,9 @@ const combinedReducers = combineReducers({
   filterList: filterListReducer,
   brandFilter: brandFilterReducer,
   colorFilter: colorFilterReducer,
-  categories: categoriesReducer
+  categories: categoriesReducer,
+  cart: cartReducer,
+  wishlist: wishlistReducer
 });
 
 export default combinedReducers;

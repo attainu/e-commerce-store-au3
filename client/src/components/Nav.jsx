@@ -4,6 +4,9 @@ import { mapStateToProps } from "../store";
 import { Link } from "react-router-dom";
 import { animationShow, animationHide } from "./logic/navAnimationLogic";
 import CategoriesDropdown from "./CategoriesDropdown";
+import CartDropdown from "./CartDropdown";
+import WishlistDropdown from "./WishlistDropdown";
+import Badge from "./Badge";
 class Nav extends Component {
   constructor() {
     super();
@@ -68,7 +71,7 @@ class Nav extends Component {
                 Men
               </Link>
               <div
-                class="dropdown-menu"
+                className="dropdown-menu p-0"
                 ref="maleCategoryBox"
                 onMouseOver={e => animationShow(this.refs.maleCategoryBox)}
                 onMouseLeave={e => animationHide(this.refs.maleCategoryBox)}
@@ -89,7 +92,7 @@ class Nav extends Component {
                 Women
               </Link>
               <div
-                class="dropdown-menu"
+                className="dropdown-menu p-0"
                 ref="femaleCategoryBox"
                 onMouseOver={e => animationShow(this.refs.femaleCategoryBox)}
                 onMouseLeave={e => animationHide(this.refs.femaleCategoryBox)}
@@ -107,23 +110,48 @@ class Nav extends Component {
                 </Link>
               </li>
             ) : null}
-            <li className="nav-item px-auto">
-              <Link className="nav-link font-weight-bold" to="/about">
-                Wishlist
-              </Link>
-            </li>
-            <li className="nav-item px-auto">
-              <Link className="nav-link font-weight-bold" to="/about">
-                Cart
-              </Link>
-            </li>
-            <li className="nav-item px-auto dropdown">
+            <li className="nav-item dropdown px-auto">
               <Link
                 className="nav-link font-weight-bold"
-                to="/login"
-                onMouseOver={e => animationShow(this.refs.dropdownBox)}
-                onMouseLeave={e => animationHide(this.refs.dropdownBox)}
+                to="/wishlist"
+                onMouseOver={e => animationShow(this.refs.wishlistBox)}
+                onMouseLeave={e => animationHide(this.refs.wishlistBox)}
               >
+                Wishlist
+                <Badge count={this.props.wishlist.length} />
+              </Link>
+              <div
+                className="dropdown-menu alert alert-secondary rounded-0 p-0 m-0"
+                style={{ width: "450px" }}
+                ref="wishlistBox"
+                onMouseOver={e => animationShow(this.refs.wishlistBox)}
+                onMouseLeave={e => animationHide(this.refs.wishlistBox)}
+              >
+                <WishlistDropdown wishlist={this.props.wishlist} />
+              </div>
+            </li>
+            <li className="nav-item dropdown px-auto">
+              <Link
+                className="nav-link font-weight-bold"
+                to="/cart"
+                onMouseOver={e => animationShow(this.refs.cartBox)}
+                onMouseLeave={e => animationHide(this.refs.cartBox)}
+              >
+                Cart
+                <Badge count={this.props.cart.length} />
+              </Link>
+              <div
+                className="alert alert-secondary dropdown-menu rounded-0 p-0 m-0"
+                style={{ width: "400px" }}
+                ref="cartBox"
+                onMouseOver={e => animationShow(this.refs.cartBox)}
+                onMouseLeave={e => animationHide(this.refs.cartBox)}
+              >
+                <CartDropdown cart={this.props.cart} />
+              </div>
+            </li>
+            <li className="nav-item px-auto dropdown">
+              <Link className="nav-link font-weight-bold" to="/login">
                 LogIn
               </Link>
             </li>

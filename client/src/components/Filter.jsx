@@ -13,6 +13,8 @@ import {
   clearColorFilter
 } from "../store/filter/actions/colorFilter.actions";
 import { createFilterList } from "../store/filterList/actions/filterList.actions";
+import { getCount } from "./logic/filterLogic";
+import Badge from "./Badge";
 
 class Filter extends Component {
   isChecked = (val, arr) => {
@@ -51,11 +53,14 @@ class Filter extends Component {
     return (
       <div className="container text-white d-flex justify-content-center">
         <div className="mb-5  mt-2">
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-between align-items-center my-3">
             <h4>Filters</h4>
             <FaFilter className="mx-2" />
           </div>
-          <h5>Brands</h5>
+          <h5>
+            Brands
+            <Badge count={this.props.filterList.brands.length} />
+          </h5>
           <div className="m-3">
             {this.props.filterList.brands.map((brand, index) => {
               return (
@@ -70,6 +75,13 @@ class Filter extends Component {
                       name="brand"
                     />
                     {brand}
+                    <Badge
+                      count={getCount(
+                        this.props.filteredProducts,
+                        "brand",
+                        brand
+                      )}
+                    />
                   </label>
                 </div>
               );
@@ -82,7 +94,9 @@ class Filter extends Component {
               Clear All
             </p>
           </div>
-          <h5>Color</h5>
+          <h5>
+            Color <Badge count={this.props.filterList.colors.length} />
+          </h5>
           {/* this we need to map  */}
           <div className="m-3">
             {this.props.filterList.colors.map((color, index) => {
@@ -98,6 +112,14 @@ class Filter extends Component {
                       name="color"
                     />
                     {color}
+
+                    <Badge
+                      count={getCount(
+                        this.props.filteredProducts,
+                        "color",
+                        color
+                      )}
+                    />
                   </label>
                 </div>
               );

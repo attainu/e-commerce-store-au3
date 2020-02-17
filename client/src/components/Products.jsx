@@ -27,7 +27,6 @@ class Products extends Component {
   }
 
   componentWillUnmount() {
-    this.props.dispatch(clearAllProducts());
     this.props.dispatch(clearFilteredProducts());
     this.props.dispatch(clearFilterList());
   }
@@ -36,10 +35,10 @@ class Products extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-xs-4 col-sm-4 col-md-2 col-lg-2 bg-dark">
+          <div className="col-xs-4 col-sm-5 col-md-4 col-lg-2 bg-dark">
             {this.state.filters && <Filter />}
           </div>
-          <div className="col-xs-8 col-sm-8 col-md-10 col-lg-10">
+          <div className="col-xs-8 col-sm-7 col-md-8 col-lg-10">
             <div className="container-fluid">
               <p className="text-muted my-3">
                 Total Products - {this.props.filteredProducts.length}
@@ -47,7 +46,12 @@ class Products extends Component {
               <div className="row">
                 {this.props.filteredProducts.map(product => {
                   return (
-                    <ProductTile key={product.product_id} product={product} />
+                    <ProductTile
+                      key={product.product_id}
+                      product={product}
+                      cart={this.props.cart}
+                      wishlist={this.props.wishlist}
+                    />
                   );
                 })}
               </div>
