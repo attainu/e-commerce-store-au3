@@ -30,13 +30,13 @@ let product = require('./server/routes/products');
 let categories = require('./server/routes/categories');
 let signup = require('./server/routes/auth/signup');
 let login = require('./server/routes/auth/login');
+let cart = require('./server/routes/cart');
 
 app.use('/auth', signup);
 app.use('/auth', login);
 app.use('/product',product);
-app.use('/product/:id',product);
 app.use('/categories', categories);
-
+app.use('/cart',cart);
 
 // const verifyToken = require('./server/middlewares/auth.middleware').verifyToken;
 // app.get("/cart", verifyToken, (req, res)=> {
