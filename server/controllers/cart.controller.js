@@ -34,27 +34,73 @@ module.exports = {
         })
     },
 
+    //Fastest Way of Querying
     async getCartDetailsByUserId(req, res){
         const cartValues = await Cart.findOne({where:{user_id:req.params.id}});
         const cartDetails = cartValues.dataValues;
-        const prodIDS = cartDetails.cart_items.map( item=>{
+        const quantities =[];
+        const productIDS = cartDetails.cart_items.map( item=>{
+            quantities.push(item.qty);
             return item.product_id;
         });
-        const quantities = cartDetails.cart_items.map( item=>{
-            return item.qty;
+        let products = await Products.findAll({
+            raw:true,
+            where: {product_id:productIDS}
         });
-
-        const arrayOfObjects =[];
-        const len = prodIDS.length
-        for(let i=0;i<len;i++){
-            let product = await Products.findOne({where:{product_id: prodIDS[i]}})
-            let obj = product.dataValues;
-            obj["qty"] = quantities[i];
+        let arrayOfObjects = [];
+        products.forEach( (item,index)=>{
+            let obj = {...item};
+            obj["qty"] = quantities[index];
             arrayOfObjects.push(obj);
-        }
-        // res.send("hi");
-        res.send(arrayOfObjects);            
+        });
+        res.send(arrayOfObjects);
     }
+
+    //Parallel Execution 
+    // async getCartDetailsByUserId(req, res){
+    //     const cartValues = await Cart.findOne({where:{user_id:req.params.id}});
+    //     const cartDetails = cartValues.dataValues;
+    //     const quantities =[];
+    //     const productIDS = cartDetails.cart_items.map( item=>{
+    //         quantities.push(item.qty);
+    //         return item.product_id;
+    //     });
+    //     let promises = [];
+    //     productIDS.map(product_id=>{
+    //             promises.push(Products.findOne({raw:true, where:{product_id: product_id } }));
+    //     });
+    //     Promise.all(promises).then(result=>{
+    //         let arrayOfObjects = [];
+    //         result.forEach((product,index)=>{
+    //             let obj = product;
+    //             obj["qty"] = quantities[index];
+    //             arrayOfObjects.push(obj);
+    //         });
+    //         res.send(arrayOfObjects);
+    //     }).catch(e=>res.send(e));
+    // }
+
+    // async getCartDetailsByUserId(req, res){
+    //     const cartValues = await Cart.findOne({where:{user_id:req.params.id}});
+    //     const cartDetails = cartValues.dataValues;
+    //     const prodIDS = cartDetails.cart_items.map( item=>{
+    //         return item.product_id;
+    //     });
+    //     const quantities = cartDetails.cart_items.map( item=>{
+    //         return item.qty;
+    //     });
+
+    //     const arrayOfObjects =[];
+    //     const len = prodIDS.length
+    //     for(let i=0;i<len;i++){
+    //         let product = await Products.findOne({where:{product_id: prodIDS[i]}})
+    //         let obj = product.dataValues;
+    //         obj["qty"] = quantities[i];
+    //         arrayOfObjects.push(obj);
+    //     }
+    //     // res.send("hi");
+    //     res.send(arrayOfObjects);            
+    // }
 
     // async getCartDetailsByUserId(req, res){
     //     Cart.findOne({
