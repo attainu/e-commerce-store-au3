@@ -9,3 +9,13 @@ export const checkInCart = (product_id, cart) => {
   });
   return r;
 };
+
+export const getTotal = cartArr => {
+  let total = 0;
+
+  cartArr.forEach(element => {
+    total = total + element.price * element.qty;
+  });
+
+  return total;
+};

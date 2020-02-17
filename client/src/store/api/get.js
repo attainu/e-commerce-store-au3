@@ -1,4 +1,5 @@
 import { API_ORIGIN_URL } from "../../config";
+import { updateCartItems } from "../cart/actions/cart.actions";
 const fetchProducts = (store, gender, category) => {
   let url = `${API_ORIGIN_URL}/product/${category}`;
   fetch(url, {
@@ -40,4 +41,19 @@ const fetchCategoriesFn = store => {
       });
     });
 };
-export { fetchProducts, fetchCategoriesFn };
+
+const fetchCartItemsApi = (store, userId) => {
+  let url = `${API_ORIGIN_URL}/cart/${userId}`;
+  fetch(url, {
+    method: "GET",
+    headers: {
+      "content-type": "application/json"
+    }
+  })
+    .then(data => data.json())
+    .then(data => {
+      store.dispatch(updateCartItems(data));
+    });
+};
+
+export { fetchProducts, fetchCategoriesFn, fetchCartItemsApi };
