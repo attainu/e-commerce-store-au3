@@ -5,7 +5,7 @@ import thunk from "redux-thunk";
 class StateLoader {
   loadState() {
     try {
-      let serializedState = localStorage.getItem("filtered.store-dataSet");
+      let serializedState = localStorage.getItem("filtered-store-dataSet");
       if (serializedState === null) {
         return this.initializeState();
       }
@@ -18,7 +18,7 @@ class StateLoader {
   saveState(state) {
     try {
       let serializedState = JSON.stringify(state);
-      localStorage.setItem("filtered.store-dataSet", serializedState);
+      localStorage.setItem("filtered-store-dataSet", serializedState);
     } catch (err) {}
   }
 

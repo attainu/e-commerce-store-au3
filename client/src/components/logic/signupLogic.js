@@ -13,18 +13,22 @@ export const handleChange = (e, setErrors, err, setPassword, password) => {
   const { name, value } = e.target;
   let errors = err;
   switch (name) {
-    case "name":
-      errors.name =
+    case "firstname":
+      errors.firstname =
         value.length < 5 ? "First Name must be 5 characters long" : null;
+      break;
+    case "lastname":
+      errors.lastname =
+        value.length < 5 ? "Last Name must be 5 characters long" : null;
       break;
 
     case "email":
       errors.email = validEmailRegex.test(value) ? null : "Email is not Valid";
       break;
-    case "contact":
-      errors.contact = validContactRegex.test(value)
+    case "mobile":
+      errors.mobile = validContactRegex.test(value)
         ? null
-        : "Please enter a valid phone no (+xxxxxxxxxxxx)";
+        : "Please enter a valid mobile no (+xxxxxxxxxxxx)";
       break;
     case "password":
       setPassword(value);
@@ -40,4 +44,3 @@ export const handleChange = (e, setErrors, err, setPassword, password) => {
   }
   setErrors({ ...errors });
 };
-
