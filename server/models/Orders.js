@@ -22,6 +22,7 @@ const Orders = db.define(
         },
         affiliate_id: {
             type: Sequelize.INTEGER,
+            allowNull: true
         },
         created: {
             type: Sequelize.STRING,

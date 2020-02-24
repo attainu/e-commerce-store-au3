@@ -6,15 +6,18 @@ const Affiliations = db.define(
   {
     affiliate_id: {
       type: Sequelize.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement:true      
     },
-    affiliations: {
-      type: Sequelize.JSON,
-      allowNull: true
+    affiliate_name:{
+      type:Sequelize.STRING,
     },
-    revenue_generated: {
+    revenue: {
       type: Sequelize.INTEGER,
       allowNull: true
+    },
+    user_id: {
+      type:Sequelize.INTEGER
     }
   },
   {
