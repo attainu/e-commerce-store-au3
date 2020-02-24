@@ -7,6 +7,7 @@ import CategoriesDropdown from "./CategoriesDropdown";
 import CartDropdown from "./CartDropdown";
 import WishlistDropdown from "./WishlistDropdown";
 import Badge from "./Badge";
+import { logout } from "../store/isLoggedIn/actions/isLoggedIn.actions";
 class Nav extends Component {
   constructor() {
     super();
@@ -23,7 +24,9 @@ class Nav extends Component {
     this.updateDimensions();
     window.addEventListener("resize", this.updateDimensions.bind(this));
   }
-
+  handleLogout = () => {
+    this.props.dispatch(logout());
+  };
   /**
    * Remove event listener
    */
@@ -150,26 +153,30 @@ class Nav extends Component {
                 <CartDropdown cart={this.props.cart} />
               </div>
             </li>
-            <li className="nav-item px-auto dropdown">
-              <Link className="nav-link font-weight-bold" to="/login">
-                LogIn
-              </Link>
-            </li>
-            <li className="nav-item px-auto">
-              <Link className="nav-link font-weight-bold" to="/signup">
-                SignUp
-              </Link>
-            </li>
-            {this.props.isLoggedIn ? (
+
+            {this.props.isLoggedIn.success ? (
               <li className="nav-item px-auto">
                 <Link
                   className="nav-link text-danger font-weight-bold"
-                  to="/logout"
+                  onClick={this.handleLogout}
                 >
                   Logout
                 </Link>
               </li>
-            ) : null}
+            ) : (
+              <>
+                <li className="nav-item px-auto dropdown">
+                  <Link className="nav-link font-weight-bold" to="/login">
+                    LogIn
+                  </Link>
+                </li>
+                <li className="nav-item px-auto">
+                  <Link className="nav-link font-weight-bold" to="/signup">
+                    SignUp
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </nav>
