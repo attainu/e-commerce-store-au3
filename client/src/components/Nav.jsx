@@ -1,51 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { mapStateToProps } from "../store";
+import { FaAngleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { animationShow, animationHide } from "./logic/navAnimationLogic";
 import CategoriesDropdown from "./CategoriesDropdown";
 import CartDropdown from "./CartDropdown";
 import WishlistDropdown from "./WishlistDropdown";
+import LoginDropdown from "./LoginDropdown";
 import Badge from "./Badge";
 import { logout } from "../store/isLoggedIn/actions/isLoggedIn.actions";
 class Nav extends Component {
-  constructor() {
-    super();
-    this.state = {
-      width: 800
-    };
-  }
-  updateDimensions = () => {
-    let update_width = window.innerWidth;
-    this.setState({ width: update_width });
-  };
-
-  componentDidMount() {
-    this.updateDimensions();
-    window.addEventListener("resize", this.updateDimensions.bind(this));
-  }
   handleLogout = () => {
     this.props.dispatch(logout());
   };
-  /**
-   * Remove event listener
-   */
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions.bind(this));
-  }
 
   render() {
-    const getClass = () => {
-      let classname = this.state.width < 991 ? "nav-item" : "nav-item px-auto";
-      return classname;
-    };
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-4">
-        {this.state.width < 991 ? (
-          <Link className="navbar-brand font-weight-bold " to="/">
-            <h3 className="p-0 m-0 text-danger">SHOP</h3>
-          </Link>
-        ) : null}
+      <nav
+        className="navbar navbar-expand-lg navbar-dark bg-dark"
+        style={{ minHeight: "10vh" }}
+      >
+        <Link className="navbar-brand font-weight-bold " to="/">
+          <h3 className="p-0 m-0 text-danger">SHOP</h3>
+        </Link>
+
         <button
           className="navbar-toggler ml-auto"
           type="button"
@@ -58,12 +37,7 @@ class Nav extends Component {
         </button>
 
         <div className="collapse navbar-collapse" id="main-navbar">
-          <ul className="navbar-nav bg-dark rounded mx-auto ">
-            <li className={getClass()}>
-              <Link className="nav-link font-weight-bold" to="/">
-                Home
-              </Link>
-            </li>
+          <ul className="navbar-nav bg-dark rounded ml-auto ">
             <li className="nav-item dropdown px-auto">
               <Link
                 className="nav-link font-weight-bold"
@@ -72,6 +46,7 @@ class Nav extends Component {
                 to="/men"
               >
                 Men
+                <FaAngleDown className="ml-1" />
               </Link>
               <div
                 className="dropdown-menu p-0"
@@ -93,6 +68,7 @@ class Nav extends Component {
                 onMouseLeave={e => animationHide(this.refs.femaleCategoryBox)}
               >
                 Women
+                <FaAngleDown className="ml-1" />
               </Link>
               <div
                 className="dropdown-menu p-0"
@@ -106,13 +82,7 @@ class Nav extends Component {
                 />
               </div>
             </li>
-            {this.state.width > 991 ? (
-              <li className="nav-item px-5 d-flex align-items-center">
-                <Link className="nav-link font-weight-bold p-0 m-0" to="/">
-                  <h3 className="p-0 m-0 text-danger">SHOP</h3>
-                </Link>
-              </li>
-            ) : null}
+
             <li className="nav-item dropdown px-auto">
               <Link
                 className="nav-link font-weight-bold"
@@ -121,6 +91,7 @@ class Nav extends Component {
                 onMouseLeave={e => animationHide(this.refs.wishlistBox)}
               >
                 Wishlist
+                <FaAngleDown className="ml-1" />
                 <Badge count={this.props.wishlist.length} />
               </Link>
               <div
@@ -141,6 +112,7 @@ class Nav extends Component {
                 onMouseLeave={e => animationHide(this.refs.cartBox)}
               >
                 Cart
+                <FaAngleDown className="ml-1" />
                 <Badge count={this.props.cart.length} />
               </Link>
               <div
@@ -155,14 +127,32 @@ class Nav extends Component {
             </li>
 
             {this.props.isLoggedIn.success ? (
-              <li className="nav-item px-auto">
-                <Link
-                  className="nav-link text-danger font-weight-bold"
-                  onClick={this.handleLogout}
-                >
-                  Logout
-                </Link>
-              </li>
+              <>
+                <div className="nav-item dropdown px-auto">
+                  <Link
+                    className="nav-link font-weight-bold"
+                    to="/cart"
+                    onMouseOver={e => animationShow(this.refs.userBox)}
+                    onMouseLeave={e => animationHide(this.refs.userBox)}
+                  >
+                    Welcome, {this.props.isLoggedIn.firstname}{" "}
+                    {this.props.isLoggedIn.lastname}
+                    <FaAngleDown className="ml-1" />
+                  </Link>
+                  <div
+                    className="alert alert-secondary dropdown-menu rounded-0 p-0 m-0"
+                    style={{ width: "400px" }}
+                    ref="userBox"
+                    onMouseOver={e => animationShow(this.refs.userBox)}
+                    onMouseLeave={e => animationHide(this.refs.userBox)}
+                  >
+                    <LoginDropdown
+                      handleLogout={this.handleLogout}
+                      user_id={this.props.isLoggedIn.user_id}
+                    />
+                  </div>
+                </div>
+              </>
             ) : (
               <>
                 <li className="nav-item px-auto dropdown">

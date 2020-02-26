@@ -39,16 +39,17 @@ module.exports = {
           message: "Wrong username or password"
         });
       } else {
-        const { firstname, lastname, email, mobile, address, gender } = user;
+        const { user_id, firstname, lastname, email, mobile, address, gender } = user;
         const jwt = require("jsonwebtoken");
         const token = jwt.sign(
-          { id: user.user_id, name: user.firstname },
+          { id: user_id, name: firstname },
           process.env.TOKEN_SECRET
         );
         let data = {
           success: true,
           message: "Successfully Signed In!",
           token,
+          user_id,
           firstname,
           lastname,
           email,
