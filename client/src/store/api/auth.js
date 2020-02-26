@@ -17,7 +17,7 @@ export const login = (email, password, dispatch) => {
   })
     .then(data => data.json())
     .then(data => {
-      console.log(data);
+      localStorage.setItem("auth_user_token", JSON.stringify(data));
       dispatch(updateLoggedInUser(data));
     });
 };

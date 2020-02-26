@@ -11,6 +11,7 @@ import Signup from "./components/Signup";
 import Cart from "./components/Cart";
 import { connect } from "react-redux";
 import { mapStateToProps } from "./store";
+import Affiliate from "./components/Affiliate";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
           <Route exact path="/women" component={Women} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route path="/affiliate/:user_id" component={Affiliate} />
 
           <Route
             exact
