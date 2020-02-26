@@ -5,6 +5,7 @@ module.exports = new Sequelize(
     define: {
       timestamps: false,
       freezeTableName: true
-    }
+    },
+    timezone: '+05:30'
   }
 );

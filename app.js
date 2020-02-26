@@ -33,6 +33,7 @@ let signup = require("./server/routes/auth/signup");
 let login = require("./server/routes/auth/login");
 let cart = require("./server/routes/cart");
 let affiliaions = require("./server/routes/affiliations");
+let orders = require("./server/routes/orders");
 
 //middlewares
 const verifyToken = require("./server/middlewares/auth.middleware").verifyToken;
@@ -43,6 +44,7 @@ app.use("/product", product);
 app.use("/categories", categories);
 app.use("/cart", cart);
 app.use("/affiliations", verifyToken, affiliaions);
+app.use("/orders", verifyToken, orders);
 
 //
 // app.get("/cart", verifyToken, (req, res)=> {

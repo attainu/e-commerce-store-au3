@@ -25,7 +25,8 @@ const Orders = db.define(
             allowNull: true
         },
         created: {
-            type: Sequelize.STRING,
+            type: Sequelize.DATE,
+            // defaultValue:''
         }
     },
     {

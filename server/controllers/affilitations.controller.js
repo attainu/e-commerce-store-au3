@@ -7,6 +7,7 @@ Affiliations.hasOne(Users, {
 
 module.exports = {
   addAffiliate(req, res) {
+    const u_id = req.payload.id;
     Affiliations.findOne({
       where: {
         affiliate_name: req.body.affiliate_name
@@ -19,7 +20,7 @@ module.exports = {
         });
       } else {
         const affiliate_name = req.body.affiliate_name;
-        const user_id = req.body.user_id;
+        const user_id = u_id;
         let obj = { affiliate_name, revenue: 0, user_id };
         Affiliations.create(obj).then(() =>
           res.send({

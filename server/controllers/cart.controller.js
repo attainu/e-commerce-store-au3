@@ -2,13 +2,16 @@ const Cart = require("../models/Cart");
 const Users = require("../models/Users");
 const Products = require("../models/Products");
 
-Cart.hasMany(Users, {
+// Cart.hasMany(Users, {
+//     foreignKey: "user_id"
+// });
+
+Users.hasOne(Cart, {
     foreignKey: "user_id"
 });
 
 module.exports = {
     addToCart(req, res) {
-        console.log(req.body);
         Cart.findOne({
             where: {
                 user_id: req.body.user_id
