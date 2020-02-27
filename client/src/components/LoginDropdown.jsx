@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FiUser, FiLogOut, FiLink } from "react-icons/fi";
+import { FiUser, FiLink, FiShoppingBag } from "react-icons/fi";
 import Logout from "./Logout";
 const LoginDropdown = ({ user_id }) => {
   return (
@@ -9,7 +9,7 @@ const LoginDropdown = ({ user_id }) => {
         <span className="px-2">
           <FiUser />
         </span>
-        <Link to="profile" className="text-muted m-0 p-0">
+        <Link to="/profile" className="text-muted m-0 p-0">
           Profile
         </Link>
       </div>
@@ -19,6 +19,14 @@ const LoginDropdown = ({ user_id }) => {
         </span>
         <Link to={`/affiliate/${user_id}`} className="text-muted m-0 p-0">
           Affiliate
+        </Link>
+      </div>
+      <div className="alert alert-dark rounded-0 border-0 dropdown-item m-0">
+        <span className="px-2">
+          <FiShoppingBag />
+        </span>
+        <Link to={`/orders`} className="text-muted m-0 p-0">
+          My Orders
         </Link>
       </div>
       <div className="alert alert-dark rounded-0 border-0 dropdown-item m-0">

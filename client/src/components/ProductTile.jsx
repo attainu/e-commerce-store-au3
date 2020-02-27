@@ -3,6 +3,7 @@ import AddToCart from "./AddToCart";
 import AddToWishlist from "./AddToWishlist";
 
 function ProductTile(props) {
+
   return (
     <div
       className={
@@ -18,14 +19,14 @@ function ProductTile(props) {
           src={props.product.image}
         />
         <div className="card-body ">
-          <p
+          <small
             className="text-justify"
             style={{
               fontWeight: "bold"
             }}
           >
-            {props.product.name.substring(0, 25)}...
-          </p>
+            {props.product.name.substring(0, 30)}...
+          </small>
 
           <h6 className="text-left font-weight-bold">{props.product.brand}</h6>
 
@@ -61,11 +62,6 @@ function ProductTile(props) {
                 wishlist={props.wishlist}
               />
             </div>
-          </div>
-          <div className="row">
-            <button className="btn btn-danger w-100 h-100 rounded-0 py-3">
-              Add To Bag
-            </button>
           </div>
         </div>
       </div>

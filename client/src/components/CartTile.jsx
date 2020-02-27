@@ -6,7 +6,7 @@ const CartTile = props => {
   return (
     <div className="col-12" style={{ fontSize: "0.7rem", fontWeight: "bold" }}>
       <div
-        className=" bg-dark text-light m-1 rounded p-2"
+        className=" bg-light text-dark border m-1 rounded p-2"
         key={product_id + 87687}
       >
         <div className="container-fluid">

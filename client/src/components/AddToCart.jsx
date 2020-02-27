@@ -14,7 +14,7 @@ const AddToCart = props => {
           <div className="col-4 p-0 h-100 d-flex justify-content-center align-items-center">
             <button
               className={`btn m-0  btn-danger  h-100 ${
-                props.oncart ? "rounded w-75" : "rounded-0 w-75"
+                props.oncart ? "rounded w-75" : "rounded-0 w-100"
               }`}
               onClick={() => dispatch(removeFromCart(result[1], isLoggedIn))}
             >
@@ -24,9 +24,7 @@ const AddToCart = props => {
 
           <div className="col-4 p-0 d-flex justify-content-center align-items-center">
             <p
-              className={`${
-                props.oncart ? "text-light" : "text-dark"
-              } text-center w-100 m-0 p-0`}
+              className={` "text-light text-center w-100 m-0 p-0`}
             >
               {result[1].qty}
             </p>

@@ -92,12 +92,11 @@ class Nav extends Component {
                 // onMouseLeave={e => animationHide(this.refs.wishlistBox)}
               >
                 Wishlist
-                <FaAngleDown className="ml-1" />
                 <Badge count={this.props.wishlist.length} />
               </Link>
               <div
                 className="dropdown-menu alert alert-secondary rounded-0 p-0 m-0"
-                style={{ width: "450px" }}
+                // style={{ width: "450px" }}
                 ref="wishlistBox"
                 // onMouseOver={e => animationShow(this.refs.wishlistBox)}
                 // onMouseLeave={e => animationHide(this.refs.wishlistBox)}
@@ -113,7 +112,6 @@ class Nav extends Component {
                 // onMouseLeave={e => animationHide(this.refs.cartBox)}
               >
                 Cart
-                <FaAngleDown className="ml-1" />
                 <Badge count={this.props.cart.length} />
               </Link>
               <div
@@ -130,19 +128,18 @@ class Nav extends Component {
             {this.props.isLoggedIn.success ? (
               <>
                 <div className="nav-item dropdown px-auto">
-                  <Link
-                    className="nav-link font-weight-bold"
-                    to="/cart"
+                  <p
+                    className="nav-link font-weight-bold m-0"
                     onMouseOver={e => animationShow(this.refs.userBox)}
                     onMouseLeave={e => animationHide(this.refs.userBox)}
+                    style={{ cursor: "pointer" }}
                   >
                     Welcome, {this.props.isLoggedIn.firstname}{" "}
                     {this.props.isLoggedIn.lastname}
                     <FaAngleDown className="ml-1" />
-                  </Link>
+                  </p>
                   <div
-                    className="alert alert-secondary dropdown-menu rounded-0 p-0 m-0"
-                    style={{ width: "400px" }}
+                    className="alert alert-secondary dropdown-menu rounded p-0 m-0"
                     ref="userBox"
                     onMouseOver={e => animationShow(this.refs.userBox)}
                     onMouseLeave={e => animationHide(this.refs.userBox)}

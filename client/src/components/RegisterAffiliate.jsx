@@ -1,24 +1,28 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { API_ORIGIN_URL } from "../config";
 
-const RegisterAffiliate = ({user_id}) => {
+const RegisterAffiliate = () => {
   const [response, setResponse] = useState(null);
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
+
   const handleRegister = e => {
     e.preventDefault();
     let formData = {
       affiliate_name: e.target.affiliate_name.value,
-      user_id: user_id
+      user_id: isLoggedIn.user_id
     };
     const url = `${API_ORIGIN_URL}/affiliations`;
     fetch(url, {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${isLoggedIn.token}`,
         "content-type": "application/json"
       },
       body: JSON.stringify(formData)
     })
       .then(data => data.json())
-      .then(result => console.log(result))
+      .then(result => setResponse(result))
       .catch(err => console.log(err));
   };
 
