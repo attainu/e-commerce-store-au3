@@ -35,7 +35,7 @@ module.exports = {
         let affiliate_id = affiliate.affiliate_id;
         let current_revenue = Number(affiliate.revenue);
         let total_price = Number(req.body.total_price);
-        let revenueToAffiliate = parseInt((total_price*0.1) + (total_price)); 
+        let revenueToAffiliate = parseInt((total_price*0.1)); 
         let total_revenue = current_revenue + revenueToAffiliate;
         let total_orders = Number(affiliate.total_orders) + 1;
         await Affiliations.update(
