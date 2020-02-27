@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { handleChange } from "./logic/signupLogic";
+import { handleChange } from "../logic/signupLogic";
 import { GiMale, GiFemale } from "react-icons/gi";
 import { signup } from "../store/api/auth";
 import { Redirect } from "react-router-dom";

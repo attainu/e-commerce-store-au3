@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { checkInCart } from "./logic/cartLogic";
+import { checkInCart } from "../logic/cartLogic";
 import { addToCart, removeFromCart } from "../store/cart/actions/cart.actions";
 import { FaPlus, FaMinus } from "react-icons/fa";
 const AddToCart = props => {

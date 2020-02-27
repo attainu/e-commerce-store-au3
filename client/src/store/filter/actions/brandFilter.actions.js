@@ -1,4 +1,4 @@
-import { applyFilters } from "../../../components/logic/filterLogic";
+import { applyFilters } from "../../../logic/filterLogic";
 
 export const removeBrandFilter = data => {
   return (dispatch, getState) => {

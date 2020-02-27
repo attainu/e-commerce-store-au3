@@ -13,7 +13,7 @@ import {
   clearColorFilter
 } from "../store/filter/actions/colorFilter.actions";
 import { createFilterList } from "../store/filterList/actions/filterList.actions";
-import { getCount } from "./logic/filterLogic";
+import { getCount } from "../logic/filterLogic";
 import Badge from "./Badge";
 
 class Filter extends Component {

@@ -10,8 +10,6 @@ const cartReducer = (cart = [], action) => {
     return (cart = action.payload);
   }
   if (action.type === "ADD_TO_CART") {
-  
-
     return (cart = action.payload);
   }
   if (action.type === "REMOVE_FROM_CART") {

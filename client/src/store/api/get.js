@@ -1,5 +1,7 @@
 import { API_ORIGIN_URL } from "../../config";
 import { updateCartItems } from "../cart/actions/cart.actions";
+import { updateAffiliateDetails } from "../affiliateDetails/actions/affiliateDetails.actions";
+
 const fetchProducts = (store, gender, category) => {
   let url = `${API_ORIGIN_URL}/product/${category}`;
   fetch(url, {
@@ -56,4 +58,22 @@ const fetchCartItemsApi = (store, userId) => {
     });
 };
 
-export { fetchProducts, fetchCategoriesFn, fetchCartItemsApi };
+const apiGetAffiliateDetails = (store, user_id, token) => {
+  const url = `${API_ORIGIN_URL}/affiliations/${user_id}`;
+
+  fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(data => data.json())
+    .then(result => store.dispatch(updateAffiliateDetails(result)))
+    .catch(err => console.log(err));
+};
+
+export {
+  fetchProducts,
+  fetchCategoriesFn,
+  fetchCartItemsApi,
+  apiGetAffiliateDetails
+};

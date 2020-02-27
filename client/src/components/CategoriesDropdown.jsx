@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTshirt } from "react-icons/fa";
 import { GiTShirt } from "react-icons/gi";
-import { createCategories } from "./logic/categoryLogic";
+import { createCategories } from "../logic/categoryLogic";
 import { Link } from "react-router-dom";
 function CategoriesDropdown(props) {
   const icon = props.gender === "men" ? <FaTshirt /> : <GiTShirt />;

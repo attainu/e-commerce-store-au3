@@ -42,11 +42,6 @@ app.use("/auth", signup);
 app.use("/auth", login);
 app.use("/product", product);
 app.use("/categories", categories);
-app.use("/cart", cart);
+app.use("/cart", verifyToken, cart);
 app.use("/affiliations", verifyToken, affiliaions);
 app.use("/orders", verifyToken, orders);
-
-//
-// app.get("/cart", verifyToken, (req, res)=> {
-//   res.json({payload :req.payload, message:"Inside Cart"});
-// });

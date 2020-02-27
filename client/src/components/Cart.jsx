@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
 import { fetchCartItems, clearCart } from "../store/cart/actions/cart.actions";
 import CartTile from "./CartTile";
-import { getTotal } from "./logic/cartLogic";
-import { uploadCart } from "../store/api/post";
+import { getTotal } from "../logic/cartLogic";
 
 const Cart = props => {
   const dispatch = useDispatch();
@@ -34,19 +35,14 @@ const Cart = props => {
           <button
             className="btn btn-outlint btn-outline-danger"
             onClick={e => dispatch(clearCart())}
-            style={{ cursor: "pointer" }}
           >
             Clear Cart
           </button>
         </div>
         <div className="col-4 d-flex justify-content-center align-items-center">
-          <button
-            onClick={e => {
-              uploadCart(props.cartArr, 1);
-            }}
-          >
-            Upload
-          </button>
+          <Link className="btn btn-success px-3" to="/checkout">
+            Go To Checkout ->>
+          </Link>
         </div>
       </div>
     </div>

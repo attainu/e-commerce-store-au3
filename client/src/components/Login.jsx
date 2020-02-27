@@ -49,7 +49,9 @@ const Login = props => {
                 Submit
               </button>
               {isLoggedIn.error ? (
-                <p className="text-danger font-weight-bold mt-3 mb-0">{isLoggedIn.message}</p>
+                <p className="text-danger font-weight-bold mt-3 mb-0">
+                  {isLoggedIn.message}
+                </p>
               ) : null}
             </form>
           </div>

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { mapStateToProps } from "../store";
 import { FaAngleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { animationShow, animationHide } from "./logic/navAnimationLogic";
+import { animationShow, animationHide } from "../logic/navAnimationLogic";
 import CategoriesDropdown from "./CategoriesDropdown";
 import CartDropdown from "./CartDropdown";
 import WishlistDropdown from "./WishlistDropdown";

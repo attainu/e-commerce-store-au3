@@ -12,7 +12,9 @@ import Cart from "./components/Cart";
 import { connect } from "react-redux";
 import { mapStateToProps } from "./store";
 import Affiliate from "./components/Affiliate";
-
+import Checkout from "./components/Checkout";
+import Orders from "./components/Orders";
+import OrderDetails from "./components/OrderDetails";
 class App extends Component {
   render() {
     return (
@@ -25,6 +27,9 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route path="/affiliate/:user_id" component={Affiliate} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/orders" component={Orders} />
+          <Route path="/orders/summary/:orderId" component={OrderDetails} />
 
           <Route
             exact
