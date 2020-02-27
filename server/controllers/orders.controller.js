@@ -26,12 +26,30 @@ module.exports = {
             },
             raw: true
         });
-        if (!affiliate)
+        if (!affiliate){
             res.send({
               error: true,
               message: "No Such Affiliate Present"
             });
+        }        
         let affiliate_id = affiliate.affiliate_id;
+        let current_revenue = Number(affiliate.revenue);
+        let total_price = Number(req.body.total_price);
+        let revenueToAffiliate = parseInt((total_price*0.1) + (total_price)); 
+        let total_revenue = current_revenue + revenueToAffiliate;
+        let total_orders = Number(affiliate.total_orders) + 1;
+        await Affiliations.update(
+            {
+                revenue : total_revenue,
+                total_orders: total_orders,
+            },
+            {
+                where:{
+                  affiliate_id : affiliate_id
+                }
+            }
+
+        );        
         restObj["affiliate_id"] = affiliate_id;
         Orders.create(restObj).then(() =>
             res.send({ error: false, message: "Order Placed Successfully" })

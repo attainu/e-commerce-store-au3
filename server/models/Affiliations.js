@@ -14,7 +14,11 @@ const Affiliations = db.define(
     },
     revenue: {
       type: Sequelize.INTEGER,
-      allowNull: true
+      defaultValue:0
+    },
+    total_orders:{
+      type: Sequelize.INTEGER,
+      defaultValue:0
     },
     user_id: {
       type:Sequelize.INTEGER
