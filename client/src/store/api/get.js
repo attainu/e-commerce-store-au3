@@ -44,11 +44,12 @@ const fetchCategoriesFn = store => {
     });
 };
 
-const fetchCartItemsApi = (store, userId) => {
+const fetchCartItemsApi = (store, userId, token) => {
   let url = `${API_ORIGIN_URL}/cart/${userId}`;
   fetch(url, {
     method: "GET",
     headers: {
+      Authorization: `Bearer ${token}`,
       "content-type": "application/json"
     }
   })

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FiUser, FiLogOut, FiLink } from "react-icons/fi";
-const LoginDropdown = ({ handleLogout, user_id }) => {
+import Logout from "./Logout";
+const LoginDropdown = ({ user_id }) => {
   return (
     <>
       <div className="alert alert-dark rounded-0 border-0 dropdown-item m-0">
@@ -21,15 +22,7 @@ const LoginDropdown = ({ handleLogout, user_id }) => {
         </Link>
       </div>
       <div className="alert alert-dark rounded-0 border-0 dropdown-item m-0">
-        <Link
-          className="nav-link text-danger font-weight-bold"
-          onClick={handleLogout}
-        >
-          <span className="pr-2">
-            <FiLogOut />
-          </span>
-          Logout
-        </Link>
+        <Logout />
       </div>
     </>
   );

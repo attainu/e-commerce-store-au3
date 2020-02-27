@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../store/cart/actions/cart.actions";
 import CartTile from "./CartTile";
+import ClearCart from "./ClearCart";
 
 const CartDropdown = props => {
   const dispatch = useDispatch();
@@ -18,14 +19,7 @@ const CartDropdown = props => {
             </div>
           );
         })}
-
-        <p
-          className="font-weight-bold text-danger py-3 text-center "
-          onClick={e => dispatch(clearCart())}
-          style={{ cursor: "pointer" }}
-        >
-          Clear Cart
-        </p>
+        <ClearCart />
       </>
     );
   } else {

@@ -1,19 +1,20 @@
-export const fetchCartItems = payload => {
+export const fetchCartItems = isLoggedIn => {
   return {
     type: "FETCH_CART_ITEMS",
-    payload: payload
+    isLoggedIn: isLoggedIn
   };
 };
 
-export const uploadCartToServer = (cart, userId) => {
+export const uploadCartToServer = (cart, userId, token) => {
   return {
     type: "UPLOAD_CART",
     cart,
-    userId
+    userId,
+    token
   };
 };
 
-export const updateCartItems = payload => {
+export const updateCartItems = (payload, isLoggedIn) => {
   return (dispatch, getState) => {
     dispatch({
       type: "UPDATE_CART_ITEMS",
@@ -22,13 +23,14 @@ export const updateCartItems = payload => {
 
     let { cart } = getState();
 
-    dispatch(uploadCartToServer(cart, 1));
-
+    if (isLoggedIn) {
+      dispatch(uploadCartToServer(cart, isLoggedIn.user_id, isLoggedIn.token));
+    }
     //need dynamic id in future
   };
 };
 
-export const addToCart = (product, cart) => {
+export const addToCart = (product, cart, isLoggedIn) => {
   let index;
   console.log([...cart]);
 
@@ -50,7 +52,11 @@ export const addToCart = (product, cart) => {
 
       let { cart } = getState();
 
-      dispatch(uploadCartToServer(cart, 1));
+      if (isLoggedIn) {
+        dispatch(
+          uploadCartToServer(cart, isLoggedIn.user_id, isLoggedIn.token)
+        );
+      }
     };
   } else if (cart.length > 0) {
     return (dispatch, getState) => {
@@ -66,7 +72,11 @@ export const addToCart = (product, cart) => {
       });
       let { cart } = getState();
 
-      dispatch(uploadCartToServer(cart, 1));
+      if (isLoggedIn) {
+        dispatch(
+          uploadCartToServer(cart, isLoggedIn.user_id, isLoggedIn.token)
+        );
+      }
     };
   } else if (cart.length === 0) {
     return (dispatch, getState) => {
@@ -81,42 +91,49 @@ export const addToCart = (product, cart) => {
       });
       let { cart } = getState();
 
-      dispatch(uploadCartToServer(cart, 1));
+      if (isLoggedIn) {
+        dispatch(
+          uploadCartToServer(cart, isLoggedIn.user_id, isLoggedIn.token)
+        );
+      }
     };
   }
 };
 
-export const removeFromCart = payload => {
+export const removeFromCart = (payload, isLoggedIn) => {
   return (dispatch, getState) => {
     dispatch({
       type: "REMOVE_FROM_CART",
       payload: payload
     });
     let { cart } = getState();
-
-    dispatch(uploadCartToServer(cart, 1));
+    if (isLoggedIn) {
+      dispatch(uploadCartToServer(cart, isLoggedIn.user_id, isLoggedIn.token));
+    }
   };
 };
 
-export const clearCart = () => {
+export const clearCart = isLoggedIn => {
   return (dispatch, getState) => {
     dispatch({
       type: "CLEAR_CART"
     });
     let { cart } = getState();
-
-    dispatch(uploadCartToServer(cart, 1));
+    if (isLoggedIn) {
+      dispatch(uploadCartToServer(cart, isLoggedIn.user_id, isLoggedIn.token));
+    }
   };
 };
 
-export const deleteFromCart = payload => {
+export const deleteFromCart = (payload, isLoggedIn) => {
   return (dispatch, getState) => {
     dispatch({
       type: "DELETE_FROM_CART",
       payload: payload
     });
     let { cart } = getState();
-
-    dispatch(uploadCartToServer(cart, 1));
+    if (isLoggedIn) {
+      dispatch(uploadCartToServer(cart, isLoggedIn.user_id, isLoggedIn.token));
+    }
   };
 };
