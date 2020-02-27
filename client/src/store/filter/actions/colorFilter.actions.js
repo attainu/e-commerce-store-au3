@@ -1,4 +1,4 @@
-import { applyFilters } from "../../../components/logic/filterLogic";
+import { applyFilters } from "../../../logic/filterLogic";
 
 export const removeColorFilter = data => {
   return (dispatch, getState) => {

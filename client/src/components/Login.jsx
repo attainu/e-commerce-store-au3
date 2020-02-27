@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/api/auth";
 import { Redirect } from "react-router-dom";
+
+import { fetchCartItems } from "../store/cart/actions/cart.actions";
 const Login = props => {
   const isLoggedIn = useSelector(state => state.isLoggedIn);
   const dispatch = useDispatch();
@@ -12,7 +14,9 @@ const Login = props => {
       password = e.target.password.value;
     login(email, password, dispatch);
   };
+
   if (isLoggedIn.success) {
+    dispatch(fetchCartItems(isLoggedIn));
     return <Redirect to="/" />;
   } else
     return (
@@ -49,7 +53,9 @@ const Login = props => {
                 Submit
               </button>
               {isLoggedIn.error ? (
-                <p className="text-danger font-weight-bold mt-3 mb-0">{isLoggedIn.message}</p>
+                <p className="text-danger font-weight-bold mt-3 mb-0">
+                  {isLoggedIn.message}
+                </p>
               ) : null}
             </form>
           </div>

@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import { fetchCartItems, clearCart } from "../store/cart/actions/cart.actions";
 import CartTile from "./CartTile";
-import { getTotal } from "./logic/cartLogic";
-import { uploadCart } from "../store/api/post";
+import { getTotal } from "../logic/cartLogic";
+import ClearCart from "./ClearCart";
 
 const Cart = props => {
   const dispatch = useDispatch();
   console.log(props.cartArr, props.wishlist, props.products);
-
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
   useEffect(() => {
-    //is logged in userId Will go here
-    dispatch(fetchCartItems("1"));
+    console.log(isLoggedIn, "from crt");
+    if (isLoggedIn) {
+      dispatch(fetchCartItems(isLoggedIn));
+    }
   }, []);
 
   return (
@@ -31,22 +35,12 @@ const Cart = props => {
           </h6>
         </div>
         <div className="col-4 d-flex justify-content-center align-items-center">
-          <button
-            className="btn btn-outlint btn-outline-danger"
-            onClick={e => dispatch(clearCart())}
-            style={{ cursor: "pointer" }}
-          >
-            Clear Cart
-          </button>
+          <ClearCart />
         </div>
         <div className="col-4 d-flex justify-content-center align-items-center">
-          <button
-            onClick={e => {
-              uploadCart(props.cartArr, 1);
-            }}
-          >
-            Upload
-          </button>
+          <Link className="btn btn-success px-3" to="/checkout">
+            Go To Checkout ->>
+          </Link>
         </div>
       </div>
     </div>

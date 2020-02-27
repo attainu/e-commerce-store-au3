@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { mapStateToProps } from "../store";
 import "./men.css";
 import CategoriesPage from "./CategoriesPage";
-import { createCategories } from "./logic/categoryLogic";
+import { createCategories } from "../logic/categoryLogic";
 class Women extends Component {
   render() {
     //  we need to extract categories belong to men

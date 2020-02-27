@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { mapStateToProps } from "../store";
 import { FaAngleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { animationShow, animationHide } from "./logic/navAnimationLogic";
+import { animationShow, animationHide } from "../logic/navAnimationLogic";
 import CategoriesDropdown from "./CategoriesDropdown";
 import CartDropdown from "./CartDropdown";
 import WishlistDropdown from "./WishlistDropdown";
@@ -12,6 +12,7 @@ import Badge from "./Badge";
 import { logout } from "../store/isLoggedIn/actions/isLoggedIn.actions";
 class Nav extends Component {
   handleLogout = () => {
+    localStorage.clear();
     this.props.dispatch(logout());
   };
 
@@ -87,8 +88,8 @@ class Nav extends Component {
               <Link
                 className="nav-link font-weight-bold"
                 to="/wishlist"
-                onMouseOver={e => animationShow(this.refs.wishlistBox)}
-                onMouseLeave={e => animationHide(this.refs.wishlistBox)}
+                // onMouseOver={e => animationShow(this.refs.wishlistBox)}
+                // onMouseLeave={e => animationHide(this.refs.wishlistBox)}
               >
                 Wishlist
                 <FaAngleDown className="ml-1" />
@@ -98,8 +99,8 @@ class Nav extends Component {
                 className="dropdown-menu alert alert-secondary rounded-0 p-0 m-0"
                 style={{ width: "450px" }}
                 ref="wishlistBox"
-                onMouseOver={e => animationShow(this.refs.wishlistBox)}
-                onMouseLeave={e => animationHide(this.refs.wishlistBox)}
+                // onMouseOver={e => animationShow(this.refs.wishlistBox)}
+                // onMouseLeave={e => animationHide(this.refs.wishlistBox)}
               >
                 <WishlistDropdown wishlist={this.props.wishlist} />
               </div>
@@ -108,8 +109,8 @@ class Nav extends Component {
               <Link
                 className="nav-link font-weight-bold"
                 to="/cart"
-                onMouseOver={e => animationShow(this.refs.cartBox)}
-                onMouseLeave={e => animationHide(this.refs.cartBox)}
+                // onMouseOver={e => animationShow(this.refs.cartBox)}
+                // onMouseLeave={e => animationHide(this.refs.cartBox)}
               >
                 Cart
                 <FaAngleDown className="ml-1" />
@@ -119,8 +120,8 @@ class Nav extends Component {
                 className="alert alert-secondary dropdown-menu rounded-0 p-0 m-0"
                 style={{ width: "400px" }}
                 ref="cartBox"
-                onMouseOver={e => animationShow(this.refs.cartBox)}
-                onMouseLeave={e => animationHide(this.refs.cartBox)}
+                // onMouseOver={e => animationShow(this.refs.cartBox)}
+                // onMouseLeave={e => animationHide(this.refs.cartBox)}
               >
                 <CartDropdown cart={this.props.cart} />
               </div>
