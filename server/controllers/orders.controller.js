@@ -13,22 +13,30 @@ Affiliations.hasMany(Orders, {
 module.exports = {
   async addOrder(req, res) {
     let { affiliate_name, ...restObj } = req.body;
-    let affiliate = await Affiliations.findOne({
-      where: {
-        affiliate_name: affiliate_name
-      },
-      raw: true
-    });
-    if (!affiliate)
-      res.send({
-        error: true,
-        message: "No Such Affiliate Present"
-      });
-    let affiliate_id = affiliate.affiliate_id;
-    restObj["affiliate_id"] = affiliate_id;
-    Orders.create(restObj).then(() =>
-      res.send({ error: false, message: "Order Placed Successfully" })
-    );
+    if(affiliate_name===''){
+      restObj["affiliate_id"] = null;
+      Orders.create(restObj).then(() =>
+          res.send({ error: false, message: "Order Placed Successfully" })
+      );
+    }
+    else{      
+        let affiliate = await Affiliations.findOne({
+            where: {
+              affiliate_name: affiliate_name
+            },
+            raw: true
+        });
+        if (!affiliate)
+            res.send({
+              error: true,
+              message: "No Such Affiliate Present"
+            });
+        let affiliate_id = affiliate.affiliate_id;
+        restObj["affiliate_id"] = affiliate_id;
+        Orders.create(restObj).then(() =>
+            res.send({ error: false, message: "Order Placed Successfully" })
+        );
+    }
   },
 
   async getOrders(req, res) {
