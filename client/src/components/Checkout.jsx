@@ -77,7 +77,7 @@ const Checkout = () => {
           </div>
         </div>
         <div className="col-2 d-flex justify-content-center align-items-center">
-          <button className="btn btn-success px-3" onClick={handleCheckout}>
+          <button  className="btn btn-success px-3" onClick={handleCheckout}>
             Proceed With Checkout
           </button>
         </div>

@@ -15,6 +15,7 @@ import Affiliate from "./components/Affiliate";
 import Checkout from "./components/Checkout";
 import Orders from "./components/Orders";
 import OrderDetails from "./components/OrderDetails";
+import Profile from "./components/Profile";
 class App extends Component {
   render() {
     return (
@@ -28,9 +29,10 @@ class App extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route path="/affiliate/:user_id" component={Affiliate} />
           <Route path="/checkout" component={Checkout} />
-          <Route path="/orders" component={Orders} />
-          <Route path="/orders/summary/:orderId" component={OrderDetails} />
-
+          <Route exact path="/orders" component={Orders} />
+          <Route path="/orders/summary/:order_id" component={OrderDetails} />
+          <Route exact path="/profile" component={Profile} />
+          <Route path="/shop/:gender/:category_id" component={Products} />
           <Route
             exact
             path="/cart"
@@ -49,7 +51,6 @@ class App extends Component {
               );
             }}
           />
-          <Route path="/shop/:gender/:category_id" component={Products} />
         </div>
       </Router>
     );
