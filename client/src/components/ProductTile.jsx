@@ -1,8 +1,21 @@
 import React from "react";
 import AddToCart from "./AddToCart";
 import AddToWishlist from "./AddToWishlist";
+import Animation from "./Animation";
+import ImageLoader from "react-load-image";
 
 function ProductTile(props) {
+  const Preloader = () => {
+    return (
+      <div className="py-5 w-100 h-100 d-flex justify-content-center align-items-center">
+        <img
+          
+          src="https://i.ibb.co/Fm67K0t/loading.gif"
+          style={{ width: "30px" }}
+        />
+      </div>
+    );
+  };
 
   return (
     <div
@@ -13,11 +26,20 @@ function ProductTile(props) {
       }
     >
       <div className="card shadow shadow-sm mb-4">
-        <img
+        <ImageLoader src={props.product.image}>
+          <img className="card-img-top" />
+          <div>Error!</div>
+          <Preloader />
+        </ImageLoader>
+
+        {/* <img
           alt="product_image"
           className="card-img-top"
           src={props.product.image}
-        />
+          onLoad={console.log("loaded")}
+        >
+          <Animation />
+        </img> */}
         <div className="card-body ">
           <small
             className="text-justify"

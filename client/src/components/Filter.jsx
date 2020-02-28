@@ -51,9 +51,9 @@ class Filter extends Component {
 
   render() {
     return (
-      <div className="container text-white d-flex justify-content-center">
+      <div className="container h-100 text-white d-flex justify-content-center">
         <div className="mb-5  mt-2">
-          <div className="d-flex justify-content-between align-items-center my-3">
+          <div className="d-flex  justify-content-between align-items-center my-3">
             <h4>Filters</h4>
             <FaFilter className="mx-2" />
           </div>
@@ -87,7 +87,7 @@ class Filter extends Component {
               );
             })}
             <p
-              className="text-danger font-weight-bold text-right"
+              className="text-danger font-weight-bold my-2"
               style={{ cursor: "pointer" }}
               onClick={e => this.clearFilter("brands")}
             >
@@ -125,15 +125,13 @@ class Filter extends Component {
               );
             })}
             <p
-              className="text-danger font-weight-bold text-right"
+              className="text-danger font-weight-bold my-3"
               style={{ cursor: "pointer" }}
               onClick={e => this.clearFilter("colors")}
             >
               Clear All
             </p>
           </div>
-          <h5>Range</h5>
-          this we need to think a slider or ranges ???
         </div>
       </div>
     );
@@ -141,3 +139,5 @@ class Filter extends Component {
 }
 
 export default connect(mapStateToProps)(Filter);
+
+

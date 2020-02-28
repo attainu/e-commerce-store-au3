@@ -15,7 +15,7 @@ const Pagination = ({ itemsPerPage, totalItems, setCurrentPage }) => {
               <li key={pagenum} className="page-item">
                 <button
                   onClick={e => {
-                    setCurrentPage({ currentpage: { pagenum } });
+                    setCurrentPage(pagenum);
                   }}
                   className="page-link"
                 >

@@ -32,7 +32,12 @@ class App extends Component {
           <Route exact path="/orders" component={Orders} />
           <Route path="/orders/summary/:order_id" component={OrderDetails} />
           <Route exact path="/profile" component={Profile} />
-          <Route path="/shop/:gender/:category_id" component={Products} />
+          <Route
+            path="/shop/:gender/:category_id"
+            render={props => (
+              <Products key={props.match.params.category_id} {...props} />
+            )}
+          />
           <Route
             exact
             path="/cart"

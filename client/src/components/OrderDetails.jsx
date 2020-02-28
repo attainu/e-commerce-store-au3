@@ -21,7 +21,7 @@ const OrderDetails = props => {
         <div className="container mt-5 p-3 d-flex my-5 justify-content-center align-items-center">
           <div className="row font-weight-bold">
             <div className="col-12">
-              <p>Order Dtails </p>
+              <p>Order Details </p>
             </div>
             <div className="container font-weight-bold">
               {order[0].products.map((product, index) => {
