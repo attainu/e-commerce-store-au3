@@ -11,7 +11,11 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Home</h1>
+        <img
+          src="https://i.ibb.co/pWyzP5k/i-Mac-1finalcover.png"
+          style={{ width: "100vw", height: "90vh" }}
+          alt=""
+        />
       </div>
     );
   }

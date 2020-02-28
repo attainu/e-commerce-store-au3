@@ -12,7 +12,7 @@ const Orders = () => {
 
   useEffect(() => {
     dispatch(fetchOrders(isLoggedIn));
-  }, []);
+  }, [dispatch, isLoggedIn]);
 
   return (
     <>
