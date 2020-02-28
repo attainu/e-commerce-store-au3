@@ -1,4 +1,5 @@
 export const updateFilteredProducts = payload => {
+  
   return {
     type: "UPDATE_FILTERED_PRODUCTS",
     payload: payload

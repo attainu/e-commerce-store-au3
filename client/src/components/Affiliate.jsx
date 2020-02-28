@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Authorize from "./Authorize";
 import RegisterAffiliate from "./RegisterAffiliate";
@@ -13,9 +13,8 @@ const Affiliate = props => {
   useEffect(() => {
     console.log("from component");
     dispatch(fetchAffiliateDetails(token, user_id));
-  }, []);
+  }, [dispatch, user_id, token]);
 
-  
   return (
     <div className="container-fluid">
       <Authorize />

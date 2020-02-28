@@ -1,7 +1,6 @@
 import React from "react";
 
 const CheckoutDetails = props => {
- 
   return (
     <div className="container">
       {props.cart.map(cartItem => {
@@ -11,7 +10,7 @@ const CheckoutDetails = props => {
               <div className="col-1">
                 <img
                   src={cartItem.image}
-                  alt="prod-image"
+                  alt="prod_thumb"
                   style={{ width: "100%" }}
                 />
               </div>
