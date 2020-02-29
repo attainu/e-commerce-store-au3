@@ -16,6 +16,7 @@ import Checkout from "./components/Checkout";
 import Orders from "./components/Orders";
 import OrderDetails from "./components/OrderDetails";
 import Profile from "./components/Profile";
+import ProfileUpdate from "./components/ProfileUpdate";
 class App extends Component {
   render() {
     return (
@@ -28,10 +29,10 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route path="/affiliate/:user_id" component={Affiliate} />
-          <Route path="/checkout" component={Checkout} />
+          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/orders" component={Orders} />
           <Route path="/orders/summary/:order_id" component={OrderDetails} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/profile" component={ProfileUpdate} />
           <Route
             path="/shop/:gender/:category_id"
             render={props => (
