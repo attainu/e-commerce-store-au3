@@ -34,7 +34,7 @@ const Search = props => {
     <>
       <div className="form-inline">
         <input
-          className="form-control rounded-0 border-0"
+          className="form-control w-75 rounded-0 border-0"
           type="text"
           placeholder="Search"
           onChange={e => setSearchKeyword(e.target.value)}

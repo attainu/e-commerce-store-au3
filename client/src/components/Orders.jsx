@@ -36,17 +36,17 @@ const Orders = () => {
                         <div className="col-1 d-flex justify-content-center align-items-center">
                           {index + 1}
                         </div>
-                        <div className="col-3 d-flex justify-content-center align-items-center">
+                        <div className="col-4 d-flex justify-content-center align-items-center">
                           <Moment format="DD/MM/YYYY HH:mm">
                             {order.created}
                           </Moment>
                         </div>
-                        <div className="col-4 d-flex justify-content-center align-items-center">
-                          Total - ₹{order.total_price}
+                        <div className="col-3 d-flex justify-content-center align-items-center">
+                          ₹{order.total_price}
                         </div>
-                        <div className="col-4 d-flex justify-content-center align-items-center cursor-pointer">
+                        <div className="col-3 d-flex justify-content-center align-items-center cursor-pointer">
                           <Link to={`orders/summary/${order.order_id}`}>
-                            View Details
+                            Details
                           </Link>
                         </div>
                       </div>
