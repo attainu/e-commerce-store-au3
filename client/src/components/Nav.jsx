@@ -105,7 +105,7 @@ class Nav extends Component {
                 // onMouseOver={e => animationShow(this.refs.wishlistBox)}
                 // onMouseLeave={e => animationHide(this.refs.wishlistBox)}
               >
-                <WishlistDropdown wishlist={this.props.wishlist} />
+                {/* <WishlistDropdown wishlist={this.props.wishlist} /> */}
               </div>
             </li>
             <li className="nav-item dropdown px-auto">

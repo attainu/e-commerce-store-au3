@@ -63,3 +63,17 @@ export const placeOrder = (
     })
     .catch(err => console.log(err));
 };
+
+export const uploadWishlist = (wishlist, user_id, token) => {
+  const url = `${API_ORIGIN_URL}/wishlist`;
+  fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ wishlist_items: wishlist })
+  }).then(res => {
+    console.log(res);
+  });
+};
