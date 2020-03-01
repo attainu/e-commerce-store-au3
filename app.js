@@ -48,4 +48,4 @@ app.use("/cart", verifyToken, cart);
 app.use("/affiliations", verifyToken, affiliaions);
 app.use("/orders", verifyToken, orders);
 app.use("/wishlist", verifyToken, wishlist);
-// app.use("/profile", verifyToken, profile);
+app.use("/profile", verifyToken, profile);
