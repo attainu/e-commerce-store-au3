@@ -7,20 +7,22 @@ const OrderTile = ({ product, index }) => {
         <div className="col-1 d-flex   justify-content-center align-items-center">
           {index + 1}
         </div>
-        <div className="col-1 d-flex   justify-content-center align-items-center">
+        <div className="col-2 d-flex   justify-content-center align-items-center">
           <img src={product.image} alt="prod-thumb" style={{ width: "100%" }} />
         </div>
-        <div className="col-5 d-flex   justify-content-center align-items-center">
-          <small className="font-weight-bold">{product.name}</small>
-        </div>
-        <div className="col-1 d-flex   justify-content-center align-items-center">
-         X {product.qty}
-        </div>
-        <div className="col-2 d-flex justify-content-center align-items-center">
-          Price - {product.price}
+        <div className="col-3 d-flex   justify-content-center align-items-center">
+          <small className="font-weight-bold">
+            {product.name.substr(0, 15)}...
+          </small>
         </div>
         <div className="col-2 d-flex justify-content-center align-items-center">
-          Total Price - {product.price * product.qty}
+          {product.price}
+        </div>
+        <div className="col-2 d-flex   justify-content-center align-items-center">
+          X {product.qty}
+        </div>
+        <div className="col-1 d-flex justify-content-center align-items-center">
+          {product.price * product.qty}
         </div>
       </div>
     </>

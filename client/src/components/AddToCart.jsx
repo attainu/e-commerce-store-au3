@@ -18,7 +18,7 @@ const AddToCart = props => {
               }`}
               onClick={() => dispatch(removeFromCart(result[1], isLoggedIn))}
             >
-              <FaMinus />
+              -
             </button>
           </div>
 
@@ -38,7 +38,7 @@ const AddToCart = props => {
                 dispatch(addToCart(props.product, props.cart, isLoggedIn))
               }
             >
-              <FaPlus />
+             +
             </button>
           </div>
         </div>

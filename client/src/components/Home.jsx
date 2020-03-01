@@ -10,10 +10,10 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ overflow: "hidden" }}>
         <img
           src="https://i.ibb.co/pWyzP5k/i-Mac-1finalcover.png"
-          style={{ width: "100vw", height: "90vh" }}
+          style={{ backgroundSize: "cover" }}
           alt=""
         />
       </div>
