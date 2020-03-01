@@ -72,7 +72,7 @@ export const uploadWishlist = (wishlist, user_id, token) => {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(wishlist)
+    body: JSON.stringify({ wishlist_items: wishlist })
   }).then(res => {
     console.log(res);
   });

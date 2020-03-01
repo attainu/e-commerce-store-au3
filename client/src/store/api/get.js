@@ -94,7 +94,7 @@ export {
 };
 
 export const fetchWishlistItemsApi = (store, userId, token) => {
-  let url = `${API_ORIGIN_URL}/wishlist}`;
+  let url = `${API_ORIGIN_URL}/wishlist`;
   fetch(url, {
     method: "GET",
     headers: {
@@ -104,6 +104,7 @@ export const fetchWishlistItemsApi = (store, userId, token) => {
   })
     .then(data => data.json())
     .then(data => {
+      console.log(data);
       store.dispatch(updateWishlistItems(data));
     });
 };

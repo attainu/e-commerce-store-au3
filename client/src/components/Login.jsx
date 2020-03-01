@@ -4,6 +4,7 @@ import { login } from "../store/api/auth";
 import { Redirect } from "react-router-dom";
 
 import { fetchCartItems } from "../store/cart/actions/cart.actions";
+import { fetchWishListItems } from "../store/wishlist/actions/wishlist.actions";
 const Login = props => {
   const isLoggedIn = useSelector(state => state.isLoggedIn);
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Login = props => {
 
   if (isLoggedIn.success) {
     dispatch(fetchCartItems(isLoggedIn));
+    dispatch(fetchWishListItems(isLoggedIn));
     return <Redirect to="/" />;
   } else
     return (
