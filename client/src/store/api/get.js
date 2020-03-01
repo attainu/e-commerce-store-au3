@@ -2,6 +2,7 @@ import { API_ORIGIN_URL } from "../../config";
 import { updateCartItems } from "../cart/actions/cart.actions";
 import { updateAffiliateDetails } from "../affiliateDetails/actions/affiliateDetails.actions";
 import { updateOrders } from "../orders/actions/orders.actions";
+import { updateWishlistItems } from "../wishlist/actions/wishlist.actions";
 const fetchProducts = (store, gender, category) => {
   let url = `${API_ORIGIN_URL}/product/${category}`;
   fetch(url, {
@@ -90,4 +91,19 @@ export {
   fetchCartItemsApi,
   apiGetAffiliateDetails,
   apiFetchOrders
+};
+
+export const fetchWishlistItemsApi = (store, userId, token) => {
+  let url = `${API_ORIGIN_URL}/wishlist}`;
+  fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "content-type": "application/json"
+    }
+  })
+    .then(data => data.json())
+    .then(data => {
+      store.dispatch(updateWishlistItems(data));
+    });
 };

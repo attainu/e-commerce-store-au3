@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import AddToWishlist from "./AddToWishlist";
-import { clearWishlist } from "../store/wishlist/actions/wishlist.actions";
+// import { clearWishlist } from "../store/wishlist/actions/wishlist.actions";
 
 const WishlistDropdown = props => {
   // we get wishlist array in props
@@ -33,7 +33,7 @@ const WishlistDropdown = props => {
         })}
         <p
           className="font-weight-bold text-danger text-center py-3"
-          onClick={e => dispatch(clearWishlist())}
+          // onClick={e => dispatch(clearWishlist())}
           style={{ cursor: "pointer" }}
         >
           Clear Wishlist
