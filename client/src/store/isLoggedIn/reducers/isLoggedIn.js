@@ -6,9 +6,31 @@ const isLoggedInReducer = (
   action
 ) => {
   if (action.type === "UPDATE_LOGGEDIN_USER") {
-    console.log("From Reducer : ", action.payload);
     return (isLoggedIn = action.payload);
   }
+
+
+  if (action.type === "RE_UPDATED_LOGGEDIN_USER") {
+    const {
+      firstname,
+      lastname,
+      email,
+      gender,
+      mobile,
+      address
+    } = action.payload;
+
+    return (isLoggedIn = {
+      ...isLoggedIn,
+      firstname,
+      lastname,
+      email,
+      gender,
+      mobile,
+      address
+    });
+  }
+
 
   if (action.type === "LOGOUT") {
     localStorage.clear();
@@ -17,6 +39,8 @@ const isLoggedInReducer = (
       error: null
     });
   }
+
+
 
   return isLoggedIn;
 };

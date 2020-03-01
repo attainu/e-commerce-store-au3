@@ -88,27 +88,27 @@ const Signup = props => {
               <label className="mr-3 mb-0">
                 Gender<span className="text-danger">*</span>
               </label>
-              <div class="form-check form-check-inline">
+              <div className="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="gender"
                   value="male"
                   required
                 />
-                <label class="form-check-label">
+                <label className="form-check-label">
                   Male <GiMale />
                 </label>
               </div>
-              <div class="form-check form-check-inline">
+              <div className="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="gender"
                   value="female"
                   required
                 />
-                <label class="form-check-label">
+                <label className="form-check-label">
                   Female <GiFemale />
                 </label>
               </div>
