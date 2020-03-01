@@ -25,18 +25,28 @@ module.exports = {
                 }).then(c => {
                     console.log("dELETED CART");
                     console.log(c);
+                    if(req.body.cart_items.length>0){
+                        Cart.create(req.body)
+                            .then(cart => {
+                                console.log(cart.dataValues);
+                            })
+                            .then(res.send("Inserted in Cart Successfully"));
+                    }
+                    else
+                        res.send("Cart is Empty!");
+                });
+            } 
+            else {
+                if(req.body.cart_items.length>0){
                     Cart.create(req.body)
                         .then(cart => {
                             console.log(cart.dataValues);
                         })
                         .then(res.send("Inserted in Cart Successfully"));
-                });
-            } else {
-                Cart.create(req.body)
-                    .then(cart => {
-                        console.log(cart.dataValues);
-                    })
-                    .then(res.send("Inserted in Cart Successfully"));
+                }
+                else
+                    res.send("Cart is Empty!");
+
             }
         });
     },
@@ -47,6 +57,8 @@ module.exports = {
             where: { user_id: req.params.id }
         });
         const cartDetails = cartValues.dataValues;
+        if(cartDetails===null)
+            res.send([]);
         const quantities = [];
         const productIDS = cartDetails.cart_items.map(item => {
             quantities.push(item.qty);

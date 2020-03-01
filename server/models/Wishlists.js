@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const db = require('../config/database')
 
 const Wishlists = db.define(
-  "wishlists",
+  "wishlist",
   {
     wishlist_id: {
       type: Sequelize.INTEGER,
@@ -10,7 +10,7 @@ const Wishlists = db.define(
       autoIncrement:true
     },
     wishlist_items: {
-      type: Sequelize.JSONB,
+      type: Sequelize.ARRAY(Sequelize.INTEGER),
       allowNull: true
     },
     user_id: {
