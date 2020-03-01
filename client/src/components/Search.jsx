@@ -17,6 +17,10 @@ const Search = props => {
     }
   });
 
+  const emptySearch = () => {
+    setSearchResults(null);
+  };
+
   useEffect(() => {
     setSearchResults(null);
     animationHide(searchDropdown.current);
@@ -39,39 +43,41 @@ const Search = props => {
           placeholder="Search"
           onChange={e => setSearchKeyword(e.target.value)}
         />
-        <button className="btn bg-light rounded-0">
+        <button className="btn bg-light rounded-0" onClick={emptySearch}>
           {searchResults ? <IoIosCloseCircle /> : <FaSearch />}
         </button>
       </div>
       <div
-        className="dropdown-menu alert alert-secondary rounded p-0 mt-2"
+        className="dropdown-menu alert alert-dark rounded p-0 mt-2"
         style={{ width: "450px" }}
         ref={searchDropdown}
       >
-        {searchResults && searchResults.length === 0 ? (
-          <h6 className="p-3">No Results</h6>
-        ) : (
-          searchResults &&
-          searchResults.map(r => {
-            return (
-              <div
-                key={r.id + 74847}
-                className="alert alert-dark rounded-0 border-0 dropdown-item m-0"
-              >
-                <span className="px-2">
-                  <FaTshirt />
-                </span>
-                <Link
-                  to={`/shop/${r.id < 6 ? "men" : "women"}/${r.id}`}
-                  className="text-muted m-0 p-0"
-                  onClick={e => setSearchResults(null)}
+        {searchResults ? (
+          searchResults && searchResults.length === 0 ? (
+            <h6 className="p-3">No Results</h6>
+          ) : (
+            searchResults &&
+            searchResults.map(r => {
+              return (
+                <div
+                  key={r.id + 74847}
+                  className="alert alert-dark rounded-0 border-0 dropdown-item m-0"
                 >
-                  {r.name.toUpperCase()}
-                </Link>
-              </div>
-            );
-          })
-        )}
+                  <span className="px-2">
+                    <FaTshirt />
+                  </span>
+                  <Link
+                    to={`/shop/${r.id < 6 ? "men" : "women"}/${r.id}`}
+                    className="text-muted m-0 p-0"
+                    onClick={e => setSearchResults(null)}
+                  >
+                    {r.name.toUpperCase()}
+                  </Link>
+                </div>
+              );
+            })
+          )
+        ) : null}
       </div>
     </>
   );

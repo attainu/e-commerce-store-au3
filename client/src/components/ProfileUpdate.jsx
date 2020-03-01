@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { GiMale, GiFemale } from "react-icons/gi";
 import { handleChange } from "../logic/signupLogic";
+import { updateProfile } from "../store/api/auth";
+import LinearDotsSpinner from "./LinearDotsSpinner";
+import Authorize from "./Authorize";
+
 const ProfileUpdate = () => {
   const initialErrors = {
     firstname: null,
@@ -11,8 +15,9 @@ const ProfileUpdate = () => {
     password: null,
     password2: null
   };
-
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState(initialErrors);
+  const [response, setResponse] = useState(null);
   const isLoggedIn = useSelector(state => state.isLoggedIn);
   const { firstname, lastname, email, gender, mobile, address } = isLoggedIn;
 
@@ -22,51 +27,49 @@ const ProfileUpdate = () => {
     email,
     gender,
     mobile,
-    address,
-    oldpassword: ""
+    address
   };
-
-  // const [firstname_, setfirstname] = useState(firstname);
-  // const [lastname_, setlastname] = useState(lastname);
-  // const [email_, setemail] = useState(email);
-  // const [gender_, setgender] = useState(gender);
-  // const [mobile_, setmobile] = useState(mobile);
-  // const [address_, setaddress] = useState(address);
-  // const [oldpassword_, setoldpassword] = useState("");
-  // const [newpassword_, setnewpassword] = useState("");
-  // const [confirmnewpassword_, setconfirmnewpassword] = useState("");
-
   const [form, setForm] = useState(initialFormValues);
-  const [password, setPassword] = useState("");
-
   const [editmode, seteditmode] = useState(false);
 
   const handleChangeHigher = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    handleChange(e, setErrors, errors, setPassword, password);
+    handleChange(e, setErrors, errors);
   };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setResponse("waiting");
+    updateProfile(form, setResponse, isLoggedIn.token, dispatch);
+  };
+
   const appendError = v => {
     return v ? <small className="text-danger ">{v}</small> : null;
   };
   return (
     <div className="container my-3">
+      <Authorize />
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-md-6 col-sm-12 d-flex justify-content-center">
           <form
             className="border p-3 shadow shadow-sm rounded"
-            // onSubmit={e => handleSubmit(e)}
+            onSubmit={e => handleSubmit(e)}
           >
             <div className="form-group px-2 d-flex justify-content-between align-items-center">
               <h3 className="">Profile</h3>
-              <div class="custom-control custom-switch">
+              <div className="custom-control custom-switch">
                 <input
                   onChange={e => seteditmode(!editmode)}
                   type="checkbox"
-                  class="custom-control-input"
+                  className="custom-control-input"
                   id="customSwitch1"
                 />
-                <label for="customSwitch1" class="custom-control-label">
-                  Edit Mode
+                <label htmlFor="customSwitch1" className="custom-control-label">
+                  <small
+                    className={!editmode ? "text-muted" : "font-weight-bold"}
+                  >
+                    Edit
+                  </small>
                 </label>
               </div>
             </div>
@@ -112,9 +115,9 @@ const ProfileUpdate = () => {
               <label className="mr-3 mb-0">
                 Gender<span className="text-danger">*</span>
               </label>
-              <div class="form-check form-check-inline">
+              <div className="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="gender"
                   value="male"
@@ -123,13 +126,13 @@ const ProfileUpdate = () => {
                   required
                   readOnly={!editmode}
                 />
-                <label class="form-check-label">
+                <label className="form-check-label">
                   Male <GiMale />
                 </label>
               </div>
-              <div class="form-check form-check-inline">
+              <div className="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="gender"
                   value="female"
@@ -138,7 +141,7 @@ const ProfileUpdate = () => {
                   required
                   readOnly={!editmode}
                 />
-                <label class="form-check-label">
+                <label className="form-check-label">
                   Female <GiFemale />
                 </label>
               </div>
@@ -155,7 +158,6 @@ const ProfileUpdate = () => {
                 onChange={e => handleChangeHigher(e)}
                 readOnly
                 required
-                readOnly
               />
               {appendError(errors.email)}
             </div>
@@ -168,7 +170,6 @@ const ProfileUpdate = () => {
                 type="text"
                 value={form.mobile}
                 className="form-control"
-                defaultValue="+91"
                 onChange={e => handleChangeHigher(e)}
                 required
                 readOnly={!editmode}
@@ -189,63 +190,26 @@ const ProfileUpdate = () => {
                 readOnly={!editmode}
               />
             </div>
-            <div className="form-group">
-              <label>
-                Password<span className="text-danger">*</span>
-              </label>
-              <input
-                name="oldpassword"
-                type="password"
-                className="form-control"
-                onChange={e => handleChangeHigher(e)}
-                required
-                readOnly={!editmode}
-              />
-            </div>
-            <div className="form-group">
-              <label>
-                New Password<span className="text-danger">*</span>
-              </label>
-              <input
-                name="password"
-                type="password"
-                className="form-control"
-                onChange={e => handleChangeHigher(e)}
-                required
-                readOnly={!editmode}
-              />
-              {appendError(errors.password)}
-            </div>
-            <div className="form-group">
-              <label>
-                Confirm Password<span className="text-danger">*</span>
-              </label>
-              <input
-                name="password2"
-                type="password"
-                className="form-control"
-                onChange={e => handleChangeHigher(e)}
-                required
-                readOnly={!editmode}
-              />
-              {appendError(errors.password2)}
-            </div>
-            <button type="submit" className="btn btn-primary">
+
+            <button
+              type="submit"
+              disabled={!editmode}
+              className="btn btn-primary"
+            >
               Submit
             </button>
 
             {/* /////////////////////MESSAGE WILL GO HERE */}
-
-            {/* {signupResponse.message ? (
+            {response === "waiting" ? <LinearDotsSpinner /> : null}
+            {response && response.message ? (
               <p
                 className={` font-weight-bold mt-3
-                 ${signupResponse.error ? "text-danger" : "text-success"}
-                `}
+      ${response.error ? "text-danger" : "text-success"}
+     `}
               >
-                {signupResponse.message}
-                {signupResponse.error ? null : <Redirect to="/login" />}
+                {response.message}
               </p>
-            ) : null} */}
+            ) : null}
           </form>
         </div>
       </div>
