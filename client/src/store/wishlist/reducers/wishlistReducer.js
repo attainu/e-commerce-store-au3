@@ -1,7 +1,6 @@
 import { store } from "../../../store";
 import { fetchWishlistItemsApi } from "../../api/get";
 import { uploadWishlist } from "../../api/post";
-
 const wishlistReducer = (wishlist = [], action) => {
   if (action.type === "FETCH_WISHLIST_ITEMS") {
     fetchWishlistItemsApi(store, action.isLoggedIn);
@@ -14,7 +13,12 @@ const wishlistReducer = (wishlist = [], action) => {
   }
   if (action.type === "REMOVE_FROM_WISHLIST") {
     let newWishlist = [...wishlist];
-    let index = newWishlist.indexOf(action.payload);
+    let index;
+    newWishlist.forEach((w, i) => {
+      if (w.product_id === action.payload) {
+        index = i;
+      }
+    });
     newWishlist.splice(index, 1);
     return (wishlist = newWishlist);
   }

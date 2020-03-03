@@ -1,3 +1,5 @@
+import { wishlistLoaded } from "../../loadingWishlist/actions/loadingWishlist.actions";
+
 export const fetchWishListItems = isLoggedIn => {
   return {
     type: "FETCH_WISHLIST_ITEMS",
@@ -22,6 +24,7 @@ export const updateWishlistItems = (payload, isLoggedIn) => {
       payload: payload
     });
     let { wishlist } = getState();
+    dispatch(wishlistLoaded());
   };
 };
 

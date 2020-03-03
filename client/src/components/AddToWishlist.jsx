@@ -5,7 +5,8 @@ import {
   removeFromWishlist,
   addToWishlist
 } from "../store/wishlist/actions/wishlist.actions";
-
+import { wishlistLoading } from "../store/loadingWishlist/actions/loadingWishlist.actions";
+import LinearDotsSpinner from "./LinearDotsSpinner";
 const AddToWishlist = props => {
   //  wishlist is an array in props
   // product_id is in props
@@ -21,17 +22,19 @@ const AddToWishlist = props => {
   });
   console.log(index, "from add to wishlist");
   const isLoggedIn = useSelector(state => state.isLoggedIn);
+  const loadingWishlist = useSelector(state => state.loadingWishlist);
 
   return (
     <>
-      {index >= 0 ? (
+      {loadingWishlist ? (
+        <LinearDotsSpinner />
+      ) : index >= 0 ? (
         <button
           className="btn btn-danger w-100 h-100 rounded-0 py-3 px-auto"
-          onClick={e =>
-            dispatch(
-              removeFromWishlist(props.product_id, props.wishlist, isLoggedIn)
-            )
-          }
+          onClick={e => {
+            dispatch(removeFromWishlist(props.product_id, isLoggedIn));
+            dispatch(wishlistLoading());
+          }}
         >
           <h6 className="m-0 p-0">
             WishList <FaMinus />
@@ -40,11 +43,12 @@ const AddToWishlist = props => {
       ) : (
         <button
           className="btn btn-warning w-100 h-100 rounded-0 py-3"
-          onClick={e =>
+          onClick={e => {
             dispatch(
               addToWishlist(props.product_id, props.wishlist, isLoggedIn)
-            )
-          }
+            );
+            dispatch(wishlistLoading());
+          }}
         >
           <h6 className="m-0 p-0">
             WishList <FaPlus />

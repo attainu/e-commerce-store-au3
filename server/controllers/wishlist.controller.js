@@ -7,7 +7,7 @@ Users.hasOne(Wishlists, {
 });
 
 module.exports = {
-  async addToWishlist(req, res) {
+  addToWishlist(req, res) {
     let id = req.payload.id;
     console.log(req.body);
     Wishlists.findOne({
