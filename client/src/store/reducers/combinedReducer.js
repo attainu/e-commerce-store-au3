@@ -12,6 +12,7 @@ import signupResponseReducer from "../signupResponse/reducers/signupResponse";
 import affiliateDetailsReducer from "../affiliateDetails/reducers/affiliateDetailsReducer";
 import orderResponseReducer from "../orderResponse/reducers/orderResponse";
 import ordersReducer from "../orders/reducers/orderReducer";
+import loadingWishlistReducer from "../loadingWishlist/reducers/loadingWishlistReducer";
 const combinedReducers = combineReducers({
   isLoggedIn: isLoggedInReducer,
   products: productsReducer,
@@ -25,7 +26,8 @@ const combinedReducers = combineReducers({
   signupResponse: signupResponseReducer,
   affiliateDetails: affiliateDetailsReducer,
   orderResponse: orderResponseReducer,
-  orders: ordersReducer
+  orders: ordersReducer,
+  loadingWishlist: loadingWishlistReducer
 });
 
 export default combinedReducers;
