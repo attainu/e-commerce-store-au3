@@ -23,8 +23,11 @@ export const updateWishlistItems = (payload, isLoggedIn) => {
       type: "UPDATE_WISHLIST_ITEMS",
       payload: payload
     });
-    let { wishlist } = getState();
+    // let { wishlist } = getState();
+    // if (isLoggedIn) {
+    // dispatch(uploadWishlistToServer(wishlist, isLoggedIn));
     dispatch(wishlistLoaded());
+    // }
   };
 };
 
