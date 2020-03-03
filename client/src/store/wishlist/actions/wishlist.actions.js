@@ -5,12 +5,13 @@ export const fetchWishListItems = isLoggedIn => {
   };
 };
 
-export const uploadWishlistToServer = (wishlist, userId, token) => {
-  return {
-    type: "UPLOAD_WISHLIST",
-    wishlist,
-    userId,
-    token
+export const uploadWishlistToServer = (wishlist, isLoggedIn) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: "UPLOAD_WISHLIST",
+      wishlist,
+      isLoggedIn
+    });
   };
 };
 
@@ -20,19 +21,12 @@ export const updateWishlistItems = (payload, isLoggedIn) => {
       type: "UPDATE_WISHLIST_ITEMS",
       payload: payload
     });
-
     let { wishlist } = getState();
-
-    if (isLoggedIn) {
-      dispatch(
-        uploadWishlistToServer(wishlist, isLoggedIn.user_id, isLoggedIn.token)
-      );
-    }
   };
 };
 
 export const addToWishlist = (product, wishlist, isLoggedIn) => {
-  let newWishlist = [...wishlist, product];
+  let newWishlist = [...wishlist, { product_id: product }];
   return (dispatch, getState) => {
     dispatch({
       type: "ADD_TO_WISHLIST",
@@ -42,9 +36,7 @@ export const addToWishlist = (product, wishlist, isLoggedIn) => {
     let { wishlist } = getState();
 
     if (isLoggedIn) {
-      dispatch(
-        uploadWishlistToServer(wishlist, isLoggedIn.user_id, isLoggedIn.token)
-      );
+      dispatch(uploadWishlistToServer(wishlist, isLoggedIn));
     }
   };
 };
@@ -57,9 +49,7 @@ export const removeFromWishlist = (payload, isLoggedIn) => {
     });
     let { wishlist } = getState();
     if (isLoggedIn) {
-      dispatch(
-        uploadWishlistToServer(wishlist, isLoggedIn.user_id, isLoggedIn.token)
-      );
+      dispatch(uploadWishlistToServer(wishlist, isLoggedIn));
     }
   };
 };
@@ -71,9 +61,7 @@ export const clearWishlist = isLoggedIn => {
     });
     let { wishlist } = getState();
     if (isLoggedIn) {
-      dispatch(
-        uploadWishlistToServer(wishlist, isLoggedIn.user_id, isLoggedIn.token)
-      );
+      dispatch(uploadWishlistToServer(wishlist, isLoggedIn));
     }
   };
 };
