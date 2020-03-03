@@ -63,7 +63,7 @@ module.exports = {
             raw: true,
             where: { product_id: productIDS }
         });
-
+        console.log(products);
         res.send(products);
     }
 }
