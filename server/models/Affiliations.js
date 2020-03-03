@@ -20,6 +20,10 @@ const Affiliations = db.define(
       type: Sequelize.INTEGER,
       defaultValue:0
     },
+    order_details:{
+      type:Sequelize.JSONB,
+      defaultValue:null
+    },
     user_id: {
       type:Sequelize.INTEGER
     }

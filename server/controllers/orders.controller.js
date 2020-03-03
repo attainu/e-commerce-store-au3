@@ -13,7 +13,7 @@ Affiliations.hasMany(Orders, {
 module.exports = {
   async addOrder(req, res) {
     let { affiliate_name, ...restObj } = req.body;
-    if(affiliate_name===''){
+    if(affiliate_name==='' || affiliate_name===null){
       restObj["affiliate_id"] = null;
       Orders.create(restObj).then(() =>
           res.send({ error: false, message: "Order Placed Successfully" })
@@ -26,34 +26,47 @@ module.exports = {
             },
             raw: true
         });
-        if (!affiliate){
+        if (affiliate===null){
             res.send({
               error: true,
               message: "No Such Affiliate Present"
             });
-        }        
-        let affiliate_id = affiliate.affiliate_id;
-        let current_revenue = Number(affiliate.revenue);
-        let total_price = Number(req.body.total_price);
-        let revenueToAffiliate = parseInt((total_price*0.1)); 
-        let total_revenue = current_revenue + revenueToAffiliate;
-        let total_orders = Number(affiliate.total_orders) + 1;
-        await Affiliations.update(
-            {
-                revenue : total_revenue,
-                total_orders: total_orders,
-            },
-            {
-                where:{
-                  affiliate_id : affiliate_id
+        }      
+        else{  
+            let affiliate_id = affiliate.affiliate_id;
+            let current_revenue = Number(affiliate.revenue);
+            let total_price = Number(req.body.total_price);
+            let revenueToAffiliate = parseInt((total_price*0.1)); 
+            let total_revenue = current_revenue + revenueToAffiliate;
+            let total_orders = Number(affiliate.total_orders) + 1;
+            let orderDetails = [];
+            let newObj = {}
+            newObj["time"] = Date.now();
+            newObj["amount"] = revenueToAffiliate;
+            if(affiliate.order_details!==null)
+              orderDetails = affiliate.order_details;
+            else
+              orderDetails.push(newObj);
+            await Affiliations.update(
+                {
+                    revenue : total_revenue,
+                    total_orders: total_orders,
+                    order_details:orderDetails
+                },
+                {
+                    where:{
+                      affiliate_id : affiliate_id
+                    }
                 }
-            }
-
-        );        
-        restObj["affiliate_id"] = affiliate_id;
-        Orders.create(restObj).then(() =>
-            res.send({ error: false, message: "Order Placed Successfully" })
-        );
+            );        
+            restObj["affiliate_id"] = affiliate_id;
+            Orders.create(restObj).then((order) =>
+            {
+                console.log(order);
+                res.send({ error: false, message: "Order Placed Successfully" })
+            
+            });
+        }
     }
   },
 
