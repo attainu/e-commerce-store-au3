@@ -106,6 +106,6 @@ export const uploadWishlist = async (wishlist, isLoggedIn) => {
   }).then(res => {
     console.log("response recieved for post");
   });
-  await timeout(5000);
+  await timeout(50);
   fetchWishlistItemsApi(store, isLoggedIn);
 };
