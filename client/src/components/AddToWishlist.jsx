@@ -10,7 +10,16 @@ const AddToWishlist = props => {
   //  wishlist is an array in props
   // product_id is in props
   const dispatch = useDispatch();
-  const index = props.wishlist.indexOf(props.product_id);
+  let index;
+  props.wishlist.forEach((w, i) => {
+    if (w.product_id === props.product_id) {
+      console.log(
+        `FROM PROPS.WISHLIST ${w.product_id} , FROM props.product_id ${props.product_id} , index :${i}`
+      );
+      index = i;
+    }
+  });
+  console.log(index, "from add to wishlist");
   const isLoggedIn = useSelector(state => state.isLoggedIn);
 
   return (

@@ -14,14 +14,22 @@ const Wishlist = () => {
       <div className="container mt-5">
         <h3>Wishlist</h3>
         <div className="container">
-          <div className="row">
-            <div className="col-10">
-              {/* <OrderTile /> */}
-            </div>
-            <div className="col-2">
-              {/* <AddToWishlist /> */}
-            </div>
-          </div>
+          {wishlist &&
+            wishlist.map((w, index) => {
+              return (
+                <div className="row">
+                  <div className="col-10">
+                    <OrderTile product={w} index={index} />
+                  </div>
+                  <div className="col-2">
+                    <AddToWishlist
+                      wishlist={wishlist}
+                      product_id={w.product_id}
+                    />
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
     </>

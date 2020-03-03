@@ -93,18 +93,19 @@ export {
   apiFetchOrders
 };
 
-export const fetchWishlistItemsApi = (store, userId, token) => {
+export const fetchWishlistItemsApi = (store, isLoggedIn) => {
+  console.log(isLoggedIn, " from fetch");
   let url = `${API_ORIGIN_URL}/wishlist`;
   fetch(url, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${isLoggedIn.token}`,
       "content-type": "application/json"
     }
   })
     .then(data => data.json())
     .then(data => {
-      console.log(data);
-      store.dispatch(updateWishlistItems(data));
+      console.log(data, "fetched wishist");
+      store.dispatch(updateWishlistItems(data, isLoggedIn));
     });
 };

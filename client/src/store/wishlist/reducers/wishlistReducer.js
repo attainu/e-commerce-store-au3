@@ -4,11 +4,7 @@ import { uploadWishlist } from "../../api/post";
 
 const wishlistReducer = (wishlist = [], action) => {
   if (action.type === "FETCH_WISHLIST_ITEMS") {
-    fetchWishlistItemsApi(
-      store,
-      action.isLoggedIn.user_id,
-      action.isLoggedIn.token
-    );
+    fetchWishlistItemsApi(store, action.isLoggedIn);
   }
   if (action.type === "UPDATE_WISHLIST_ITEMS") {
     return (wishlist = action.payload);
@@ -27,7 +23,7 @@ const wishlistReducer = (wishlist = [], action) => {
   }
 
   if (action.type === "UPLOAD_WISHLIST") {
-    uploadWishlist(action.wishlist, action.userId, action.token);
+    uploadWishlist(action.wishlist, action.isLoggedIn);
   }
   return wishlist;
 };
