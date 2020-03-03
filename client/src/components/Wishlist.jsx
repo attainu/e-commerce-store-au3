@@ -9,7 +9,7 @@ const Wishlist = () => {
   const dispatch = useDispatch();
   const wishlist = useSelector(state => state.wishlist);
   const token = useSelector(state => state.isLoggedIn.token);
-
+console.log(wishlist,"wishlist from wishlist component");
   return (
     <>
       <div className="container mt-5">
