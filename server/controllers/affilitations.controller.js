@@ -21,7 +21,7 @@ module.exports = {
       } else {
         const affiliate_name = req.body.affiliate_name;
         const user_id = u_id;
-        let obj = { affiliate_name, revenue: 0, user_id };
+        let obj = { affiliate_name, revenue: 0,order_details:null, user_id };
         Affiliations.create(obj).then(() =>
           res.send({
             error: false,
