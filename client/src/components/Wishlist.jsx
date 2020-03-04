@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchWishlist } from "../store/wishlist/actions/wishlist.actions";
-import AddToWishlist from "./AddToWishlist";
 import OrderTile from "./OrderTile";
 import { FaHeart } from "react-icons/fa";
 
@@ -9,7 +7,7 @@ const Wishlist = () => {
   const dispatch = useDispatch();
   const wishlist = useSelector(state => state.wishlist);
   const token = useSelector(state => state.isLoggedIn.token);
-
+  console.log(wishlist, "wishlist from wishlist component");
   return (
     <>
       <div className="container mt-5">
@@ -31,12 +29,12 @@ const Wishlist = () => {
               return (
                 <div className="row">
                   <div className="col-12">
-                    <OrderTile purpose={"wishlist"} product={w} index={index} />
-                  </div>
-                  <div className="col-2 pt-5 h-100 d-flex justify-content-center align-items-center">
-                    <AddToWishlist
+                    <OrderTile
+                      purpose={"wishlist"}
+                      product={w}
                       wishlist={wishlist}
                       product_id={w.product_id}
+                      index={index}
                     />
                   </div>
                 </div>

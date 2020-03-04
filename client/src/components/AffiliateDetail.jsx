@@ -1,4 +1,5 @@
 import React from "react";
+import Graph from "./Graph";
 
 const AffiliateDetail = ({ affiliateData }) => {
   return (
@@ -19,6 +20,9 @@ const AffiliateDetail = ({ affiliateData }) => {
             {affiliateData.affiliate_details.total_orders}
           </h6>
         </div>
+      </div>
+      <div className="container mt-5">
+        <Graph affiliateData={affiliateData} />
       </div>
     </>
   );

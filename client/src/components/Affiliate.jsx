@@ -13,7 +13,7 @@ const Affiliate = props => {
   useEffect(() => {
     console.log("from component");
     dispatch(fetchAffiliateDetails(token, user_id));
-  }, [dispatch, user_id, token]);
+  }, []);
 
   return (
     <div className="container-fluid">
@@ -22,7 +22,7 @@ const Affiliate = props => {
         className="row d-flex justify-content-center align-items-center"
         style={{ minHeight: "90vh" }}
       >
-        <div className=" h-100 col-md-4 col-sm-12">
+        <div className=" h-100 col-md-6 col-sm-12">
           {affiliateDetails && affiliateDetails.isAffiliate ? (
             <AffiliateDetail affiliateData={affiliateDetails} />
           ) : (

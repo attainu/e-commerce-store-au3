@@ -18,6 +18,7 @@ import OrderDetails from "./components/OrderDetails";
 import ProfileUpdate from "./components/ProfileUpdate";
 import ChangePassword from "./components/ChangePassword";
 import Wishlist from "./components/Wishlist";
+import ProductDetails from "./components/ProductDetails";
 class App extends Component {
   render() {
     return (
@@ -36,6 +37,7 @@ class App extends Component {
           <Route exact path="/profile" component={ProfileUpdate} />
           <Route exact path="/updatePassword" component={ChangePassword} />
           <Route exact path="/wishlist" component={Wishlist} />
+          <Route path="/product/single/:id" component={ProductDetails} />
 
           <Route
             path="/shop/:gender/:category_id"
