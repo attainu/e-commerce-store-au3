@@ -4,7 +4,7 @@ const Animation = () => {
   return (
     <div
       className="d-flex align-items-center justify-content-center my-5 py-5"
-      style={{ width: "100vw" }}
+      style={{ width: "100%" }}
     >
       <img
         src="https://i.ibb.co/Fm67K0t/loading.gif"

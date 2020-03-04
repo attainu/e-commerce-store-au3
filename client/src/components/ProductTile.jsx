@@ -3,13 +3,13 @@ import AddToCart from "./AddToCart";
 import AddToWishlist from "./AddToWishlist";
 import Animation from "./Animation";
 import ImageLoader from "react-load-image";
+import { Link } from "react-router-dom";
 
 function ProductTile(props) {
   const Preloader = () => {
     return (
       <div className="py-5 w-100 h-100 d-flex justify-content-center align-items-center">
         <img
-          
           src="https://i.ibb.co/Fm67K0t/loading.gif"
           style={{ width: "30px" }}
         />
@@ -41,14 +41,16 @@ function ProductTile(props) {
           <Animation />
         </img> */}
         <div className="card-body ">
-          <small
-            className="text-justify"
-            style={{
-              fontWeight: "bold"
-            }}
-          >
-            {props.product.name.substring(0, 30)}...
-          </small>
+          <Link to={`/product/single/${props.product.product_id}`}>
+            <small
+              className="text-justify"
+              style={{
+                fontWeight: "bold"
+              }}
+            >
+              {props.product.name.substring(0, 30)}...
+            </small>
+          </Link>
 
           <h6 className="text-left font-weight-bold">{props.product.brand}</h6>
 

@@ -13,7 +13,7 @@ const Affiliate = props => {
   useEffect(() => {
     console.log("from component");
     dispatch(fetchAffiliateDetails(token, user_id));
-  }, [dispatch, user_id, token]);
+  }, []);
 
   return (
     <div className="container-fluid">
@@ -28,6 +28,9 @@ const Affiliate = props => {
           ) : (
             <RegisterAffiliate user_id={user_id} />
           )}
+          <div className="col-12 d-flex justify-content-center align-items-center">
+            chart will go here
+          </div>
         </div>
       </div>
     </div>

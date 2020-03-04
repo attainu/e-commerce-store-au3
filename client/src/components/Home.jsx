@@ -1,24 +1,26 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { mapStateToProps } from "../store";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { fetchCategories } from "../store/categories/actions/categories.actions";
+import Animation from "./Animation";
 
-class Home extends Component {
-  componentDidMount() {
-    this.props.dispatch(fetchCategories());
-  }
+const Home = () => {
+  const dispatch = useDispatch();
+  const [finish, setFinish] = useState(false);
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, []);
 
-  render() {
-    return (
-      <div style={{ overflow: "hidden" }}>
-        <img
-          src="https://i.ibb.co/pWyzP5k/i-Mac-1finalcover.png"
-          style={{ backgroundSize: "cover" }}
-          alt=""
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <img
+        src="https://i.ibb.co/XVWy2Gk/i-Mac-1finalcover-1.png"
+        className="img-fluid"
+        alt=""
+        onLoad={e => setFinish(true)}
+      />
+      {!finish ? <Animation /> : null}
+    </div>
+  );
+};
 
-export default connect(mapStateToProps)(Home);
+export default Home;

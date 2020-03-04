@@ -53,7 +53,13 @@ const Cart = props => {
           <ClearCart />
         </div>
         <div className="col-4 d-flex justify-content-center align-items-center">
-          <Link className="btn btn-success px-3" to="/checkout">
+          <Link
+            disbled={true}
+            className={`btn btn-success px-3 ${
+              props.cartArr.length === 0 ? "disabled" : ""
+            }`}
+            to="/checkout"
+          >
             Go To Checkout ->>
           </Link>
         </div>

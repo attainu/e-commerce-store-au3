@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import AddToWishlist from "./AddToWishlist";
 
 const OnOrder = ({ product }) => {
@@ -6,7 +7,9 @@ const OnOrder = ({ product }) => {
     <>
       <div className="col-3 d-flex   justify-content-center align-items-center">
         <small className="font-weight-bold">
-          {product.name.substr(0, 15)}...
+          <Link to={`product/single/${product.product_id}`}>
+            {product.name.substr(0, 15)}...
+          </Link>
         </small>
       </div>
       <div className="col-1 d-flex justify-content-center align-items-center">
@@ -26,7 +29,12 @@ const OnWishlist = ({ product, wishlist, product_id }) => {
   return (
     <>
       <div className="col-4 d-flex   justify-content-center align-items-center">
-        <small className="font-weight-bold">{product.name}</small>
+        <small className="font-weight-bold">
+          {" "}
+          <Link to={`product/single/${product.product_id}`}>
+            {product.name.substr(0, 15)}...
+          </Link>
+        </small>
       </div>
       <div className="col-1 d-flex justify-content-center align-items-center">
         {product.price}
