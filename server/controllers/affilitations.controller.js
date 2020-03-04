@@ -43,5 +43,18 @@ module.exports = {
         res.send({ isAffiliate: true, affiliate_details: affiliate.toJSON() });
       else res.send({ isAffiliate: false });
     });
+  },
+
+  searchAffiliate(req, res) {
+    const name = req.params.name;
+    let affiliate = await Affiliations.findOne({
+      where:{
+        affiliate_name:name
+      }
+    });
+    if(affiliate)
+      res.send(true);
+    else  
+      res.send(false);
   }
 };
