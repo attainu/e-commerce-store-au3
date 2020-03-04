@@ -5,6 +5,7 @@ import CheckoutDetails from "./CheckoutDetails";
 import { placeOrder } from "../store/api/post";
 import { clearCart } from "../store/cart/actions/cart.actions";
 import { clearOrderResponse } from "../store/orderResponse/actions/orderResponse.actions";
+import { API_ORIGIN_URL } from "../config";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,15 @@ const Checkout = () => {
       qty
     };
   });
-  const total_price = cart.reduce((sum, b) => {
+  let total_price = cart.reduce((sum, b) => {
     return sum + parseFloat(b.price) * parseFloat(b.qty);
   }, 0);
+
+  const [fixTotalPrice, setFixTotalPrice] = useState(total_price);
   const [affiliate_name, setAffiliate_name] = useState(null);
+
+  const [affiliateResponse, setAffiliateResponse] = useState(null);
+
   const handleCheckout = () => {
     placeOrder(
       isLoggedIn,
@@ -35,6 +41,24 @@ const Checkout = () => {
     );
   };
 
+  total_price =
+    affiliateResponse === true
+      ? fixTotalPrice - Math.ceil((fixTotalPrice / 100) * 10)
+      : total_price;
+
+  const checkAffiliation = () => {
+    const url = `${API_ORIGIN_URL}/affiliations/search/${affiliate_name}`;
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${isLoggedIn.token}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        setAffiliateResponse(data);
+        setAffiliate_name("");
+      });
+  };
   useEffect(() => {
     return () => {
       dispatch(clearOrderResponse());
@@ -57,12 +81,24 @@ const Checkout = () => {
               <div className="row w-100">
                 <div className="col-6 d-flex justify-content-center align-items-center">
                   <p className="text-success font-weight-bold m-0">
-                    Order Total : ₹{total_price}
+                    {affiliateResponse ? (
+                      <span>
+                        Order Total :
+                        <>
+                          <span>
+                            {total_price} <s>₹{fixTotalPrice}</s>
+                          </span>
+                        </>
+                      </span>
+                    ) : (
+                      `Order Total : ₹${fixTotalPrice}`
+                    )}
                   </p>
                 </div>
-                <div className="col-6 d-flex justify-content-center align-items-center">
+                <div className="col-6">
                   <div class="input-group">
                     <input
+                      value={affiliate_name}
                       type="text"
                       class="form-control"
                       placeholder="Enter Affiliation Code (optional)"
@@ -70,7 +106,27 @@ const Checkout = () => {
                         setAffiliate_name(e.target.value);
                       }}
                     />
+
+                    <div className="input-group-prepend">
+                      <button
+                        onClick={e => checkAffiliation()}
+                        className="btn btn-success"
+                      >
+                        Apply
+                      </button>
+                    </div>
                   </div>
+                  {affiliateResponse === true ? (
+                    <small className="text-success font-weight-bold">
+                      Discount Applied of ₹ (
+                      {Math.ceil((fixTotalPrice / 100) * 10)}) (10%){" "}
+                    </small>
+                  ) : null}
+                  {affiliateResponse === false ? (
+                    <small className="text-danger font-weight-bold">
+                      Invalid Affiliation code !!!
+                    </small>
+                  ) : null}
                 </div>
               </div>
             </div>
