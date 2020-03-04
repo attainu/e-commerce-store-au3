@@ -22,15 +22,12 @@ const Affiliate = props => {
         className="row d-flex justify-content-center align-items-center"
         style={{ minHeight: "90vh" }}
       >
-        <div className=" h-100 col-md-4 col-sm-12">
+        <div className=" h-100 col-md-6 col-sm-12">
           {affiliateDetails && affiliateDetails.isAffiliate ? (
             <AffiliateDetail affiliateData={affiliateDetails} />
           ) : (
             <RegisterAffiliate user_id={user_id} />
           )}
-          <div className="col-12 d-flex justify-content-center align-items-center">
-            chart will go here
-          </div>
         </div>
       </div>
     </div>
