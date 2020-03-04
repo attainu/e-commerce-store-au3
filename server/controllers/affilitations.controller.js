@@ -45,7 +45,7 @@ module.exports = {
     });
   },
 
-  searchAffiliate(req, res) {
+  async searchAffiliate(req, res) {
     const name = req.params.name;
     let affiliate = await Affiliations.findOne({
       where:{
