@@ -81,8 +81,8 @@ class Products extends Component {
       <div className="container-fluid">
         <div className="row h-100">
           <div
-            className="col-xs-4 col-sm-5 col-md-4 col-lg-2 bg-dark "
-            style={{ minHeight: "90vh" }}
+            className="col-xs-4 col-sm-5 col-md-4 col-lg-2 shadow-lg"
+            style={{color:"black !important",backgroundColor:"white"}}
           >
             {this.state.filters && <Filter />}
           </div>

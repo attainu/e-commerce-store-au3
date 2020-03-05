@@ -7,7 +7,7 @@ const CheckoutDetails = props => {
     <div className="container">
       {props.cart.map((cartItem, idx) => {
         return (
-          <div className="row bg-light border rounded my-2 p-1">
+          <div className="row bg-white shadow-lg border rounded my-4 p-1">
             <div className="col-1 d-flex justify-content-center align-items-center">
               {idx + 1}
             </div>
@@ -30,7 +30,7 @@ const CheckoutDetails = props => {
               {cartItem.qty}
             </div>
             <div className="col-1 d-flex justify-content-center align-items-center">
-              {cartItem.qty * cartItem.price}
+              ₹{cartItem.qty * cartItem.price}
             </div>
           </div>
         );

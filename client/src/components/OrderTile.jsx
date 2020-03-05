@@ -5,15 +5,15 @@ import AddToWishlist from "./AddToWishlist";
 const OnOrder = ({ product }) => {
   return (
     <>
-      <div className="col-3 d-flex   justify-content-center align-items-center">
-        <small className="font-weight-bold">
+      <div className="col-3 d-flex justify-content-center align-items-center">
+        <p className="font-weight-bold cart-item-name">
           <Link to={`product/single/${product.product_id}`}>
             {product.name.substr(0, 15)}...
           </Link>
-        </small>
+        </p>
       </div>
       <div className="col-1 d-flex justify-content-center align-items-center">
-        {product.price}
+        ₹{product.price}
       </div>
       <div className="col-3 d-flex   justify-content-center align-items-center">
         X {product.qty}
@@ -29,15 +29,15 @@ const OnWishlist = ({ product, wishlist, product_id }) => {
   return (
     <>
       <div className="col-4 d-flex   justify-content-center align-items-center">
-        <small className="font-weight-bold">
+        <p className="font-weight-bold cart-item-name">
           {" "}
           <Link to={`product/single/${product.product_id}`}>
             {product.name.substr(0, 15)}...
           </Link>
-        </small>
+        </p>
       </div>
       <div className="col-1 d-flex justify-content-center align-items-center">
-        {product.price}
+        ₹{product.price}
       </div>
       <div className="col-3 d-flex justify-content-center align-items-center">
         <AddToWishlist
@@ -67,7 +67,7 @@ const OrderTile = ({ product, index, purpose, wishlist, product_id }) => {
   return (
     <>
       <div className="container">
-        <div className="row alert alert-secondary border border-dark py-2 p-0">
+        <div className="row border-0 bg-white py-2 p-0 shadow-lg my-5">
           <div className="col-1 d-flex   justify-content-center align-items-center">
             {index + 1}
           </div>

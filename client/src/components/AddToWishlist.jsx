@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaPlus } from "react-icons/fa";
-import { TiDeleteOutline } from "react-icons/ti";
+import { TiDelete } from "react-icons/ti";
 import {
   removeFromWishlist,
   addToWishlist
@@ -53,7 +53,7 @@ const AddToWishlist = props => {
       return (
         <>
           <button
-            className="btn btn-warning w-100 h-100 rounded-0 py-3"
+            className="btn wishlist-button w-100 h-100 rounded-0 py-3"
             onClick={e => {
               dispatch(
                 addToWishlist(props.product_id, props.wishlist, isLoggedIn)
@@ -94,14 +94,14 @@ const AddToWishlist = props => {
             <button
               className={`btn btn-danger ${
                 props.onWishlist ? "" : "w-100 h-100 rounded-0"
-              } py-3 px-auto`}
+              } py-2 px-auto`}
               onClick={e => {
                 dispatch(removeFromWishlist(props.product_id, isLoggedIn));
                 dispatch(wishlistLoading());
               }}
             >
               <h6 className="m-0 p-0">
-                <TiDeleteOutline />
+                <TiDelete style={{fontSize:"2rem", cursor: "pointer"}} />
               </h6>
             </button>
           </>

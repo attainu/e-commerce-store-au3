@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { FaShoppingCart } from "react-icons/fa";
-import { fetchCartItems, clearCart } from "../store/cart/actions/cart.actions";
+import { FaShoppingCart, FaArrowRight } from "react-icons/fa";
+import { fetchCartItems } from "../store/cart/actions/cart.actions";
 import CartTile from "./CartTile";
 import { getTotal } from "../logic/cartLogic";
 import ClearCart from "./ClearCart";
@@ -26,8 +26,8 @@ const Cart = props => {
         </h2>
       </div>
       <div className="row mt-5">
-        {props.cartArr.map(item => {
-          return <CartTile cartItem={item} cartArr={props.cartArr} />;
+        {props.cartArr.map( (item,index) => {
+          return <CartTile key={index+"ebwjnk7"} cartItem={item} cartArr={props.cartArr} />;
         })}
       </div>
       <div className="row p-5 d-flex justify-content-center align-items-center">
@@ -54,13 +54,12 @@ const Cart = props => {
         </div>
         <div className="col-4 d-flex justify-content-center align-items-center">
           <Link
-            disbled={true}
             className={`btn btn-success px-3 ${
               props.cartArr.length === 0 ? "disabled" : ""
             }`}
             to="/checkout"
           >
-            Go To Checkout ->>
+            Go To Checkout <FaArrowRight/>
           </Link>
         </div>
       </div>

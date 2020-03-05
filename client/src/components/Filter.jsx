@@ -57,11 +57,11 @@ class Filter extends Component {
             <h4>Filters</h4>
             <FaFilter className="mx-2" />
           </div>
-          <h5>
+          <h5 style={{color:"black"}}>
             Brands
             <Badge count={this.props.filterList.brands.length} />
           </h5>
-          <div className="m-3">
+          <div className="m-3" style={{color:"black"}}>
             {this.props.filterList.brands.map((brand, index) => {
               return (
                 <div key={index + 100} className="form-check">
@@ -94,11 +94,11 @@ class Filter extends Component {
               Clear All
             </p>
           </div>
-          <h5>
+          <h5 style={{color:"black"}}>
             Color <Badge count={this.props.filterList.colors.length} />
           </h5>
           {/* this we need to map  */}
-          <div className="m-3">
+          <div className="m-3" style={{color:"black"}}>
             {this.props.filterList.colors.map((color, index) => {
               return (
                 <div key={index + 200} className="form-check">

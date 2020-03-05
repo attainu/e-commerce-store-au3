@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import {MdCopyright} from 'react-icons/md';
 import Nav from "./components/Nav";
 import Products from "./components/Products";
 import Home from "./components/Home";
@@ -23,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App container-fluid p-0 m-0">
+        <div className="App container-fluid p-0 m-0 mb-5">
           <Nav />
           <Route exact path="/" component={Home} />
           <Route exact path="/men" component={Men} />
@@ -64,6 +65,13 @@ class App extends Component {
             }}
           />
         </div>
+        <footer>
+            <div className="container-fluid fixed-bottom">
+                <div className="row">
+                    <p className="text-center mx-auto p-0 m-0">Copyright <MdCopyright/> Shoppe | All rights reserved</p>
+                </div>
+            </div>
+      </footer>        
       </Router>
     );
   }

@@ -48,7 +48,7 @@ function ProductTile(props) {
                 fontWeight: "bold"
               }}
             >
-              {props.product.name.substring(0, 30)}...
+              {props.product.name.substring(0, 20)}...
             </small>
           </Link>
 

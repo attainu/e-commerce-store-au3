@@ -39,6 +39,9 @@ export const placeOrder = (
   user_id,
   token
 ) => {
+  store.dispatch({
+    type:"STARTED_ORDER_REQUEST",
+  })
   const url = `${API_ORIGIN_URL}/orders`;
   const body = {
     affiliate_name,

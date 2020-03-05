@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkInCart } from "../logic/cartLogic";
 import { addToCart, removeFromCart } from "../store/cart/actions/cart.actions";
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 const AddToCart = props => {
   const dispatch = useDispatch();
   const result = checkInCart(props.product_id, props.cart);
@@ -44,7 +44,7 @@ const AddToCart = props => {
         </div>
       ) : (
         <button
-          className="btn font-weight-bold btn-success w-100 h-100 py-3 rounded-0"
+          className="btn font-weight-bold success-button w-100 h-100 py-3 rounded-0"
           onClick={() =>
             dispatch(addToCart(props.product, props.cart, isLoggedIn))
           }

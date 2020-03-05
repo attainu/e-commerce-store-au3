@@ -9,19 +9,19 @@ const CartTile = props => {
     <div className="col-12 ">
       {props.cartItem ? (
         <div
-          className=" bg-light text-dark border m-1 rounded p-2"
+          className=" bg-light shadow-lg my-4 text-dark border m-1 rounded p-2"
           key={product_id + 87687}
         >
           <div className="container-fluid ">
             <div className="row  d-flex justify-content-center align-items-center">
-              <div className="col-2 p-1 d-flex justify-content-center align-items-center">
+              <div className="col-md-1 col-xs-2 p-1 d-flex justify-content-center align-items-center">
                 <img
                   src={image}
                   alt="cart=item-thumb"
                   style={{ width: "100%" }}
                 />
               </div>
-              <div className="col-10  ">
+              <div className="col-md-11 col-xs-10">
                 <div className="row  my-2  px-3 ">
                   <div className="col-2 d-flex justify-content-center align-items-center">
                     <p className="m-0">{brand}</p>

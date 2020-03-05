@@ -34,22 +34,78 @@ const Search = props => {
     }
   }, [searchKeyword]);
 
-  return (
-    <>
-      <div className="form-inline">
+  // return (
+  //   <>
+  //     <div className="form-inline">
+  //       <input
+  //         className="form-control rounded-0 header-search-form"
+  //         type="text"
+  //         placeholder="Search"
+  //         onChange={e => setSearchKeyword(e.target.value)}
+  //       />
+        // <button className="btn bg-white rounded-0 header-search-button" onClick={emptySearch}>
+        //   {searchResults ? <IoIosCloseCircle /> : <FaSearch />}
+        // </button>
+  //     </div>
+      // <div
+      //   className="dropdown-menu alert alert-dark rounded p-0 mt-2"
+      //   style={{ width: "450px" }}
+      //   ref={searchDropdown}
+      // >
+      //   {searchResults ? (
+      //     searchResults && searchResults.length === 0 ? (
+      //       <h6 className="p-3">No Results</h6>
+      //     ) : (
+      //       searchResults &&
+      //       searchResults.map(r => {
+      //         return (
+      //           <div
+      //             key={r.id + 74847}
+      //             className="alert alert-dark rounded-0 border-0 dropdown-item m-0"
+      //           >
+      //             <span className="px-2">
+      //               <FaTshirt />
+      //             </span>
+      //             <Link
+      //               to={`/shop/${r.id < 6 ? "men" : "women"}/${r.id}`}
+      //               className="text-muted m-0 p-0"
+      //               onClick={e => setSearchResults(null)}
+      //             >
+      //               {r.name.toUpperCase()}
+      //             </Link>
+      //           </div>
+      //         );
+      //       })
+      //     )
+      //   ) : null}
+      // </div>
+  //   </>
+  // );
+
+
+return(
+
+<div>
+  <div class="form-row align-items-center">
+    <div class="col-12 my-1">
+      <div class="input-group">
         <input
-          className="form-control w-75 rounded-0 border-0"
+          className="form-control rounded-0 header-search-form"
           type="text"
           placeholder="Search"
           onChange={e => setSearchKeyword(e.target.value)}
         />
-        <button className="btn bg-light rounded-0" onClick={emptySearch}>
-          {searchResults ? <IoIosCloseCircle /> : <FaSearch />}
-        </button>
+        <div class="input-group-prepend">
+          <button className="btn bg-white rounded-0 header-search-button" onClick={emptySearch}>
+            {searchResults ? <IoIosCloseCircle /> : <FaSearch />}
+          </button>        
+        </div>
       </div>
-      <div
+    </div>
+  </div>
+  <div
         className="dropdown-menu alert alert-dark rounded p-0 mt-2"
-        style={{ width: "450px" }}
+        // style={{ width: "450px" }}
         ref={searchDropdown}
       >
         {searchResults ? (
@@ -78,9 +134,14 @@ const Search = props => {
             })
           )
         ) : null}
-      </div>
-    </>
-  );
+      </div>  
+</div>
+
+
+)  
+
+
+
 };
 
 export default Search;

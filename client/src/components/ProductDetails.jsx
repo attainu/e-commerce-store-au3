@@ -5,22 +5,19 @@ import Animation from "./Animation";
 import AddToCart from "./AddToCart";
 import AddToWishlist from "./AddToWishlist";
 import ImageMagnified from "./ImageMagnified";
+
 const ProductDetails = props => {
   const id = props.match.params.id;
   const wishlist = useSelector(state => state.wishlist);
   const cart = useSelector(state => state.cart);
   const [product, setProduct] = useState(null);
   const helper = p => {
-    const lines = p.description.replace(/\n/g, "<br />");
-    console.log(lines);
-    const addLineBreaks = string =>
-      string.split("\n").map((text, index) => (
-        <li key={`${text}-${index}`}>
-          {text.substr(0, text.length - 1)}
-          <br />
-        </li>
-      ));
-
+    let lines = p.description.replace(/\\n/g,'');
+    lines = lines.replace(/\\/g, '');
+    let supplier_name = p.supplier_name.replace(/\\n/g,'');
+    supplier_name = supplier_name.replace(/\\/g, '');
+    let supplier_address = p.supplier_address.replace(/\\n/g,'');
+    supplier_address = supplier_address.replace(/\\/g, '');
     return (
       <>
         <div className="row">
@@ -66,7 +63,11 @@ const ProductDetails = props => {
               </div>
               <div className="col-12">
                 <h5>Description :</h5>
-                <ul>{addLineBreaks(p.description)}</ul>
+                <p>{lines}</p>
+                <h5>Supplier Name :</h5>
+                <p>{supplier_name}</p>
+                <h5>Supplier Address :</h5>
+                <p>{supplier_address}</p>
               </div>
             </div>
           </div>
@@ -74,6 +75,7 @@ const ProductDetails = props => {
       </>
     );
   };
+
   useEffect(() => {
     const url = `${API_ORIGIN_URL}/product/single/${id}`;
     fetch(url)

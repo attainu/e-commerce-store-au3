@@ -27,7 +27,7 @@ const Wishlist = () => {
           ) : (
             wishlist.map((w, index) => {
               return (
-                <div className="row">
+                <div className="row" key={index+"abcde"}>
                   <div className="col-12">
                     <OrderTile
                       purpose={"wishlist"}
