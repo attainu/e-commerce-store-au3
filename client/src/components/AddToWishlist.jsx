@@ -68,7 +68,7 @@ const AddToWishlist = props => {
           <>
             <button
               className={`btn btn-danger ${
-                props.onWishlist ? "" : "w-100 h-100 rounded-0"
+                props.onWishlist ? " bg-transparent text-danger border-0" : "w-100 h-100 rounded-0"
               } py-2 px-auto`}
               onClick={e => {
                 dispatch(removeFromWishlist(props.product_id, isLoggedIn));

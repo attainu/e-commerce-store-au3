@@ -35,9 +35,9 @@ const ChangePassword = () => {
     return v ? <small className="text-danger ">{v}</small> : null;
   };
   return (
-    <div className="container my-3">
+    <div className="container mt-5 ">
       <Authorize />
-      <div className="row d-flex justify-content-center align-items-center h-100">
+      <div className="row mt-5 d-flex justify-content-center align-items-center h-100">
         <div className="col-md-6 col-sm-12 d-flex justify-content-center">
           <form
             className="border p-5 shadow shadow-sm rounded"
