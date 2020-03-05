@@ -26,19 +26,20 @@ module.exports = {
       where: {
         email: req.body.email
       }
-    }).then(user => {
+    }).then(async user => {
       console.log(user);
       if (!user)
         return res
           .status(404)
           .send({ error: true, message: "Wrong username or password" });
       let password = req.body.password;
-      if (user.password !== password) {
+      if(!await user.validPassword(password)){
         return res.status(404).send({
           error: true,
           message: "Wrong username or password"
         });
-      } else {
+      }
+      else {
         const { user_id, firstname, lastname, email, mobile, address, gender } = user;
         const jwt = require("jsonwebtoken");
         const token = jwt.sign(
@@ -55,9 +56,8 @@ module.exports = {
           email,
           gender,
           mobile,
-          address
+          address,
         };
-        console.log(data);
         res.json(data);
       }
     });

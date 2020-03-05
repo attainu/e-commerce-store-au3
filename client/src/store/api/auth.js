@@ -10,7 +10,6 @@ export const login = (email, password, dispatch) => {
     email: email,
     password: password
   };
-  console.log(data);
   fetch(url, {
     method: "POST",
     headers: {
@@ -27,7 +26,6 @@ export const login = (email, password, dispatch) => {
 
 export const signup = (form, dispatch) => {
   let url = `${API_ORIGIN_URL}/auth/signup`;
-  console.log(form);
   fetch(url, {
     method: "POST",
     headers: {
@@ -42,7 +40,6 @@ export const signup = (form, dispatch) => {
 };
 
 export const fetchProfile = (token, dispatch) => {
-  console.log("in api");
   const url = `${API_ORIGIN_URL}/profile`;
   fetch(url, {
     headers: {
@@ -86,6 +83,5 @@ export const updateProfile = (form, setResponse, token, dispatch) => {
     .then(data => {
       setResponse(data);
       fetchProfile(token, dispatch);
-      console.log("in caller");
     });
 };

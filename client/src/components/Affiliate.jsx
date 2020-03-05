@@ -11,7 +11,6 @@ const Affiliate = props => {
   const token = useSelector(state => state.isLoggedIn.token);
 
   useEffect(() => {
-    console.log("from component");
     dispatch(fetchAffiliateDetails(token, user_id));
   }, []);
 

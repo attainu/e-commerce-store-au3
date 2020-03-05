@@ -32,14 +32,6 @@ function ProductTile(props) {
           <Preloader />
         </ImageLoader>
 
-        {/* <img
-          alt="product_image"
-          className="card-img-top"
-          src={props.product.image}
-          onLoad={console.log("loaded")}
-        >
-          <Animation />
-        </img> */}
         <div className="card-body ">
           <Link to={`/product/single/${props.product.product_id}`}>
             <small
@@ -74,13 +66,6 @@ function ProductTile(props) {
               />
             </div>
             <div className="col-6 p-0">
-              {/* <AddToCart
-                key={props.product_id + 123}
-                product_id={props.product.product_id}
-                cart={props.cart}
-              /> */}
-
-              {/* wishlist  */}
               <AddToWishlist
                 product_id={props.product.product_id}
                 wishlist={props.wishlist}

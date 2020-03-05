@@ -4,7 +4,6 @@ import AddToCart from "./AddToCart";
 import RemoveFromCart from "./RemoveFromCart";
 const CartTile = props => {
   const { product_id, name, price, brand, image, qty } = props.cartItem;
-  console.log(props.cartItem, " from cart tile as cart item");
   return (
     <div className="col-12 ">
       {props.cartItem ? (

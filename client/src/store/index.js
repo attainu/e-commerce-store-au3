@@ -28,7 +28,12 @@ class StateLoader {
     };
   }
 }
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+let composeEnhancer = '';
+if(process.env.NODE_ENV === 'development')
+    composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+else
+    composeEnhancer = compose;
 
 const stateLoader = new StateLoader();
 

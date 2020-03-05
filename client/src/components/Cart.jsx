@@ -9,10 +9,8 @@ import ClearCart from "./ClearCart";
 
 const Cart = props => {
   const dispatch = useDispatch();
-  console.log(props.cartArr, props.wishlist, props.products);
   const isLoggedIn = useSelector(state => state.isLoggedIn);
   useEffect(() => {
-    console.log(isLoggedIn, "from crt");
     if (isLoggedIn) {
       dispatch(fetchCartItems(isLoggedIn));
     }

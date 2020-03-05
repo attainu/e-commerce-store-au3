@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { handleChange } from "../logic/signupLogic";
 import { GiMale, GiFemale } from "react-icons/gi";
 import { signup } from "../store/api/auth";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const Signup = props => {
   const initialErrors = {
@@ -41,7 +41,7 @@ const Signup = props => {
   };
 
   return (
-    <div className="container " style={{ height: "90vh" }}>
+    <div className="container py-5">
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-md-6 col-sm-12 d-flex justify-content-center">
           <form

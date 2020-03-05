@@ -1,5 +1,4 @@
 export const applyFilters = (products, brandFilter = [], colorFilter = []) => {
-  console.log(products, brandFilter, colorFilter);
   let filtered = [];
   let len = products.length;
   let brandProducts = [],
@@ -11,7 +10,6 @@ export const applyFilters = (products, brandFilter = [], colorFilter = []) => {
       if (brandFilter.includes(products[i].brand))
         brandProducts.push(products[i]);
   } else if (colorLen > 0) {
-    console.log("got it");
     for (let i = 0; i < len; i++)
       if (colorFilter.includes(products[i].color))
         colorProducts.push(products[i]);

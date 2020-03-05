@@ -7,7 +7,7 @@ import { clearOrderResponse } from "../store/orderResponse/actions/orderResponse
 import { API_ORIGIN_URL } from "../config";
 import Animation from './Animation';
 import { MdPayment } from "react-icons/md"
-
+import imgBrand from '../assets/shoppe.png';
 const Checkout = () => {
   const dispatch = useDispatch();
 
@@ -65,7 +65,7 @@ const Checkout = () => {
     amount: total_price*100, 
     name: 'SHOPPE',
     description: 'Have a great day shopping',
-    image: 'https://cdn.razorpay.com/logos/7K3b6d18wHwKzL_medium.png',
+    image: imgBrand,
     handler: function(response) {
       placeOrder(
         isLoggedIn,

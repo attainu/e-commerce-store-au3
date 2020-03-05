@@ -16,11 +16,11 @@ export const handleChange = (e, setErrors, err, setPassword, password) => {
   switch (name) {
     case "firstname":
       errors.firstname =
-        value.length < 5 ? "First Name must be 5 characters long" : null;
+        value.length < 2 ? "First Name must be atleast 2 characters long" : null;
       break;
     case "lastname":
       errors.lastname =
-        value.length < 5 ? "Last Name must be 5 characters long" : null;
+        value.length < 2 ? "Last Name must be atleast 2 characters long" : null;
       break;
 
     case "email":
@@ -34,7 +34,7 @@ export const handleChange = (e, setErrors, err, setPassword, password) => {
     case "password":
       setPassword(value);
       errors.password =
-        value.length < 8 ? "Password must be 8 characters long" : null;
+        value.length < 8 ? "Password must be atleast 8 characters long" : null;
       break;
     case "password2":
       errors.password2 = value === password ? null : "Passwords don't match";

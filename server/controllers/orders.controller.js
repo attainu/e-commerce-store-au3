@@ -47,7 +47,6 @@ module.exports = {
         } else {
           orderDetails.push(newObj);
         }
-        console.log(orderDetails);
         await Affiliations.update(
           {
             revenue: total_revenue,
@@ -62,7 +61,6 @@ module.exports = {
         );
         restObj["affiliate_id"] = affiliate_id;
         Orders.create(restObj).then(order => {
-          console.log(order);
           res.send({ error: false, message: "Order Placed Successfully" });
         });
       }

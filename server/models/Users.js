@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require('../config/database')
+const bcrypt = require('bcryptjs');
 
 const Users = db.define(
   "users",
@@ -39,8 +40,19 @@ const Users = db.define(
     }
   },
   {
-    freezeTableName: true
+    freezeTableName: true,
+    hooks:{
+      beforeCreate: async function(users) {
+        const salt = await bcrypt.genSalt();
+        users.password = await bcrypt.hash(users.password, salt);
+      }
+    },
   }
 );
+
+Users.prototype.validPassword = async function(password) {
+  return await bcrypt.compare(password, this.password);
+}
+
 
 module.exports = Users

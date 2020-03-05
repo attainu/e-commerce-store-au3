@@ -8,7 +8,6 @@ class Women extends Component {
   render() {
     //  we need to extract categories belong to men
     const fCategories = createCategories(this.props.categories, "women");
-    console.log(fCategories);
     return (
       <div className="cat-page-container">
         <div className="container-fluid h-100">

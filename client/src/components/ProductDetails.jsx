@@ -85,7 +85,6 @@ const ProductDetails = props => {
       setProduct(null);
     };
   }, []);
-  console.log(id, wishlist, cart, product);
   return (
     <div className="container mt-2">
       {product ? helper(product) : <Animation />}

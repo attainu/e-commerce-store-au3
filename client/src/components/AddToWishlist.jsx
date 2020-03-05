@@ -12,43 +12,20 @@ const AddToWishlist = props => {
   // wishlist is an array in props
   // product_id is in props
   //props.onWishlist is boolean to differ weather its mounted on products or wishlistTile
-  console.log(
-    "================================================================"
-  );
 
-  console.log(props.wishlist, "props.wishlist");
-  console.log(
-    "================================================================"
-  );
-  console.log(props.product_id, "props.product_id");
-  console.log(
-    "================================================================"
-  );
-
-  console.log(props.onWishlist, "props.onWishlist");
-  console.log(
-    "================================================================"
-  );
   const dispatch = useDispatch();
   let index;
-  console.log(props.wishlist);
   if (props.wishlist) {
     props.wishlist.forEach((w, i) => {
       if (w.product_id === props.product_id) {
-        console.log(
-          `FROM PROPS.WISHLIST ${w.product_id} , FROM props.product_id ${props.product_id} , index :${i}`
-        );
         index = i;
       }
     });
   }
-  console.log(index, "from add to wishlist");
   const isLoggedIn = useSelector(state => state.isLoggedIn);
   const loadingWishlist = useSelector(state => state.loadingWishlist);
-  console.log(isLoggedIn);
 
   const helper = idx => {
-    console.log("inside helper==========================", idx);
     if (idx === undefined) {
       return (
         <>
@@ -69,7 +46,6 @@ const AddToWishlist = props => {
       );
     } else {
       if (idx < 0) {
-        console.log("rendering add button index :", idx);
         return (
           <>
             <button
@@ -88,7 +64,6 @@ const AddToWishlist = props => {
           </>
         );
       } else {
-        console.log("rendering remove index :", idx);
         return (
           <>
             <button

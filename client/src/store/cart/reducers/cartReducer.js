@@ -4,7 +4,6 @@ import { uploadCart } from "../../api/post";
 
 const cartReducer = (cart = [], action) => {
   if (action.type === "FETCH_CART_ITEMS") {
-    console.log(action);
     fetchCartItemsApi(
       store,
       action.isLoggedIn.user_id,

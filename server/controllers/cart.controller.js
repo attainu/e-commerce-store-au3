@@ -23,23 +23,15 @@ module.exports = {
             user_id: req.body.user_id
           }
         }).then(c => {
-          console.log("dELETED CART");
-          console.log(c);
           if (req.body.cart_items.length > 0) {
             Cart.create(req.body)
-              .then(cart => {
-                console.log(cart.dataValues);
-              })
-              .then(res.send("Inserted in Cart Successfully"));
+            .then(res.send("Inserted in Cart Successfully"));
           } else res.send("Cart is Empty!");
         });
       } else {
         if (req.body.cart_items.length > 0) {
           Cart.create(req.body)
-            .then(cart => {
-              console.log(cart.dataValues);
-            })
-            .then(res.send("Inserted in Cart Successfully"));
+          .then(res.send("Inserted in Cart Successfully"));
         } else res.send("Cart is Empty!");
       }
     });

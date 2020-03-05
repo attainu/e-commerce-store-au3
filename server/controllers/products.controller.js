@@ -8,7 +8,6 @@ module.exports = {
     },
     async getProductByID(req, res){
         const id = req.params.id;
-        console.log(id);
         const product = await Products.findOne({
           where: {
              product_id : id

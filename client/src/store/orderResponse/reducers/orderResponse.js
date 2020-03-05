@@ -7,7 +7,6 @@ const orderResponseReducer = (
   action
 ) => {
   if (action.type === "UPDATE_ORDER_RESPONSE") {
-    console.log("from reducer ", action.payload);
     let payload = {...action.payload, isLoading:false};
     return (orderResponse = payload);
   }

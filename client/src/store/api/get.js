@@ -94,7 +94,6 @@ export {
 };
 
 export const fetchWishlistItemsApi = (store, isLoggedIn) => {
-  console.log(isLoggedIn, " from fetch");
   let url = `${API_ORIGIN_URL}/wishlist/get`;
   fetch(url, {
     method: "GET",
@@ -105,7 +104,6 @@ export const fetchWishlistItemsApi = (store, isLoggedIn) => {
   })
     .then(data => data.json())
     .then(data => {
-      console.log(data, "fetched wishist");
       store.dispatch(updateWishlistItems(data, isLoggedIn));
     });
 };
