@@ -40,15 +40,15 @@ let wishlist = require("./server/routes/wishlist");
 //middlewares
 const verifyToken = require("./server/middlewares/auth.middleware").verifyToken;
 
-app.use("api/auth", signup);
-app.use("api/auth", login);
-app.use("api/product", product);
-app.use("api/categories", categories);
-app.use("api/cart", verifyToken, cart);
-app.use("api/affiliations", verifyToken, affiliaions);
-app.use("api/orders", verifyToken, orders);
-app.use("api/wishlist", verifyToken, wishlist);
-app.use("api/profile", verifyToken, profile);
+app.use("/api/auth", signup);
+app.use("/api/auth", login);
+app.use("/api/product", product);
+app.use("/api/categories", categories);
+app.use("/api/cart", verifyToken, cart);
+app.use("/api/affiliations", verifyToken, affiliaions);
+app.use("/api/orders", verifyToken, orders);
+app.use("/api/wishlist", verifyToken, wishlist);
+app.use("/api/profile", verifyToken, profile);
 
 //build mode
 if (process.env.NODE_ENV === "production") {
