@@ -1,5 +1,3 @@
-export const API_ORIGIN_URL = "http://localhost:3001";
+export const API_ORIGIN_URL = "https://shoppe-gaurav.herokuapp.com";
 
-//"https://mstay.herokuapp.com";
-
-//
+//http://localhost:3001
