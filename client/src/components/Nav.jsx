@@ -6,10 +6,11 @@ import { Link } from "react-router-dom";
 import { animationShow, animationHide } from "../logic/navAnimationLogic";
 import CategoriesDropdown from "./CategoriesDropdown";
 import CartDropdown from "./CartDropdown";
-import WishlistDropdown from "./WishlistDropdown";
 import LoginDropdown from "./LoginDropdown";
 import Badge from "./Badge";
 import { logout } from "../store/isLoggedIn/actions/isLoggedIn.actions";
+import Search from "./Search";
+import brandLogo from '../assets/shoppe.png';
 class Nav extends Component {
   handleLogout = () => {
     localStorage.clear();
@@ -19,13 +20,18 @@ class Nav extends Component {
   render() {
     return (
       <nav
-        className="navbar navbar-expand-lg navbar-dark bg-dark"
+        className="navbar navbar-expand-lg bg-white"
         style={{ minHeight: "10vh" }}
       >
-        <Link className="navbar-brand font-weight-bold " to="/">
-          <h3 className="p-0 m-0 text-danger">SHOP</h3>
+        <Link className="navbar-brand font-weight-bold" to="/">
+          <img style={{height:'7vh', marginTop:'-10px'}} src={brandLogo} alt="logo"/>
+          <span className="p-0 m-0 header-brand-name">SHOPPE</span>
         </Link>
-
+        <ul className="navbar-nav px-3 bg-white rounded ml-auto ">
+          <li className="nav-item dropdown">
+            <Search />
+          </li>
+        </ul>
         <button
           className="navbar-toggler ml-auto"
           type="button"
@@ -36,21 +42,20 @@ class Nav extends Component {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
-        <div className="collapse navbar-collapse" id="main-navbar">
-          <ul className="navbar-nav bg-dark rounded ml-auto ">
+        <div className="collapse navbar-collapse mr-3" id="main-navbar">
+          <ul className="navbar-nav bg-white rounded ml-auto ">
             <li className="nav-item dropdown px-auto">
-              <Link
-                className="nav-link font-weight-bold"
+              <p
+                className="nav-link font-weight-bold m-0" style={{cursor:"pointer"}}
                 onMouseOver={e => animationShow(this.refs.maleCategoryBox)}
                 onMouseLeave={e => animationHide(this.refs.maleCategoryBox)}
-                to="/men"
+            
               >
                 Men
                 <FaAngleDown className="ml-1" />
-              </Link>
+              </p>
               <div
-                className="dropdown-menu p-0"
+                className="dropdown-menu alert alert-secondary rounded p-0 m-0"
                 ref="maleCategoryBox"
                 onMouseOver={e => animationShow(this.refs.maleCategoryBox)}
                 onMouseLeave={e => animationHide(this.refs.maleCategoryBox)}
@@ -62,17 +67,16 @@ class Nav extends Component {
               </div>
             </li>
             <li className="nav-item dropdown px-auto">
-              <Link
-                className="nav-link font-weight-bold"
-                to="/women"
+              <p
+                className="nav-link font-weight-bold m-0" style={{cursor:"pointer"}}
                 onMouseOver={e => animationShow(this.refs.femaleCategoryBox)}
                 onMouseLeave={e => animationHide(this.refs.femaleCategoryBox)}
               >
                 Women
                 <FaAngleDown className="ml-1" />
-              </Link>
+              </p>
               <div
-                className="dropdown-menu p-0"
+                className="dropdown-menu alert alert-secondary rounded p-0 m-0"
                 ref="femaleCategoryBox"
                 onMouseOver={e => animationShow(this.refs.femaleCategoryBox)}
                 onMouseLeave={e => animationHide(this.refs.femaleCategoryBox)}
@@ -95,13 +99,13 @@ class Nav extends Component {
                 <Badge count={this.props.wishlist.length} />
               </Link>
               <div
-                className="dropdown-menu alert alert-secondary rounded-0 p-0 m-0"
+                className="dropdown-menu alert alert-secondary rounded p-0 m-0"
                 // style={{ width: "450px" }}
                 ref="wishlistBox"
                 // onMouseOver={e => animationShow(this.refs.wishlistBox)}
                 // onMouseLeave={e => animationHide(this.refs.wishlistBox)}
               >
-                <WishlistDropdown wishlist={this.props.wishlist} />
+                {/* <WishlistDropdown wishlist={this.props.wishlist} /> */}
               </div>
             </li>
             <li className="nav-item dropdown px-auto">
@@ -115,7 +119,7 @@ class Nav extends Component {
                 <Badge count={this.props.cart.length} />
               </Link>
               <div
-                className="alert alert-secondary dropdown-menu rounded-0 p-0 m-0"
+                className="alert alert-secondary dropdown-menu rounded p-0 m-0"
                 style={{ width: "400px" }}
                 ref="cartBox"
                 // onMouseOver={e => animationShow(this.refs.cartBox)}

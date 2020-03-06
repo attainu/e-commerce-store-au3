@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Authorize from "./Authorize";
 import RegisterAffiliate from "./RegisterAffiliate";
@@ -11,11 +11,9 @@ const Affiliate = props => {
   const token = useSelector(state => state.isLoggedIn.token);
 
   useEffect(() => {
-    console.log("from component");
     dispatch(fetchAffiliateDetails(token, user_id));
   }, []);
 
-  
   return (
     <div className="container-fluid">
       <Authorize />
@@ -23,7 +21,7 @@ const Affiliate = props => {
         className="row d-flex justify-content-center align-items-center"
         style={{ minHeight: "90vh" }}
       >
-        <div className=" h-100 col-md-4 col-sm-12">
+        <div className=" h-100 col-md-6 col-sm-12">
           {affiliateDetails && affiliateDetails.isAffiliate ? (
             <AffiliateDetail affiliateData={affiliateDetails} />
           ) : (

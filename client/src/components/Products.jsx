@@ -20,22 +20,10 @@ class Products extends Component {
       itemsPerPage: 10,
       paginatedItems: null,
       currentPage: 1,
-      itemsPerPage: 10,
       lastIndex: null,
       firstIndex: null
     };
   }
-
-  getCategoryName = id => {
-    let category_name;
-    this.props.categories.map(c => {
-      if (c.category_id == id) {
-        category_name = c.category_name;
-      }
-    });
-    return category_name;
-  };
-
   componentDidMount() {
     this.props.dispatch(clearAllProducts());
     this.props.dispatch(clearFilteredProducts());
@@ -45,12 +33,37 @@ class Products extends Component {
         this.props.match.params.category_id
       )
     );
-
     this.setState({ filters: true });
   }
 
+  getCategoryName = id => {
+    let category_name;
+    this.props.categories.map(c => {
+      if (c.category_id === parseInt(id)) {
+        category_name = c.category_name;
+      }
+    });
+    return category_name;
+  };
+
+  breadCrumb() {
+    return (
+      <h6>{`${this.props.match.params.gender
+        .toLowerCase()
+        .split(" ")
+        .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+        .join(" ")}
+      /
+          ${this.getCategoryName(this.props.match.params.category_id)
+            .toLowerCase()
+            .split(" ")
+            .map(s => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(" ")}
+      `}</h6>
+    );
+  }
+
   setCurrentPage = n => {
-    console.log(n);
     this.setState({ currentPage: n });
   };
 
@@ -65,27 +78,18 @@ class Products extends Component {
     const firstIndex = lastIndex - this.state.itemsPerPage;
 
     return (
-      <div className="container-fluid" >
+      <div className="container-fluid">
         <div className="row h-100">
-          <div className="col-xs-4 col-sm-5 col-md-4 col-lg-2 bg-dark " style={{minHeight: "90vh"}} >
+          <div
+            className="col-xs-4 col-sm-5 col-md-4 col-lg-2 shadow-lg"
+            style={{color:"black !important",backgroundColor:"white"}}
+          >
             {this.state.filters && <Filter />}
           </div>
           <div className="col-xs-8 h-100 col-sm-7 col-md-8 col-lg-10">
             <div className="container-fluid">
               <div className="row my-3">
-                <div className="col-12">
-                  <h6>{`${this.props.match.params.gender
-                    .toLowerCase()
-                    .split(" ")
-                    .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-                    .join(" ")} / ${this.getCategoryName(
-                    this.props.match.params.category_id
-                  )
-                    .toLowerCase()
-                    .split(" ")
-                    .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-                    .join(" ")}`}</h6>
-                </div>
+                <div className="col-12">{this.breadCrumb()}</div>
               </div>
               <div className="row">
                 <div className="col-6  d-flex justify-content-start align-items-center">
@@ -100,7 +104,7 @@ class Products extends Component {
                     Max Results To Show :
                   </label>
                   <select
-                    class="custom-select w-25"
+                    className="custom-select w-25"
                     onClick={e =>
                       this.setState({ itemsPerPage: e.target.value })
                     }

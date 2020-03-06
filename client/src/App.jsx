@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import {MdCopyright} from 'react-icons/md';
 import Nav from "./components/Nav";
 import Products from "./components/Products";
 import Home from "./components/Home";
@@ -15,12 +16,15 @@ import Affiliate from "./components/Affiliate";
 import Checkout from "./components/Checkout";
 import Orders from "./components/Orders";
 import OrderDetails from "./components/OrderDetails";
-import Profile from "./components/Profile";
+import ProfileUpdate from "./components/ProfileUpdate";
+import ChangePassword from "./components/ChangePassword";
+import Wishlist from "./components/Wishlist";
+import ProductDetails from "./components/ProductDetails";
 class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App container-fluid p-0 m-0">
+        <div className="App container-fluid p-0 m-0 mb-5">
           <Nav />
           <Route exact path="/" component={Home} />
           <Route exact path="/men" component={Men} />
@@ -28,10 +32,14 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route path="/affiliate/:user_id" component={Affiliate} />
-          <Route path="/checkout" component={Checkout} />
+          <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/orders" component={Orders} />
           <Route path="/orders/summary/:order_id" component={OrderDetails} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/profile" component={ProfileUpdate} />
+          <Route exact path="/updatePassword" component={ChangePassword} />
+          <Route exact path="/wishlist" component={Wishlist} />
+          <Route path="/product/single/:id" component={ProductDetails} />
+
           <Route
             path="/shop/:gender/:category_id"
             render={props => (
@@ -57,6 +65,13 @@ class App extends Component {
             }}
           />
         </div>
+        <footer>
+            <div className="container-fluid fixed-bottom">
+                <div className="row">
+                    <p className="text-center mx-auto p-0 m-0">Copyright <MdCopyright/> Shoppe | All rights reserved</p>
+                </div>
+            </div>
+      </footer>        
       </Router>
     );
   }

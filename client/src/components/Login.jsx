@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/api/auth";
 import { Redirect } from "react-router-dom";
 
 import { fetchCartItems } from "../store/cart/actions/cart.actions";
+import { fetchWishListItems } from "../store/wishlist/actions/wishlist.actions";
+import { fetchAffiliateDetails } from "../store/affiliateDetails/actions/affiliateDetails.actions";
 const Login = props => {
   const isLoggedIn = useSelector(state => state.isLoggedIn);
   const dispatch = useDispatch();
@@ -17,6 +19,9 @@ const Login = props => {
 
   if (isLoggedIn.success) {
     dispatch(fetchCartItems(isLoggedIn));
+    dispatch(fetchWishListItems(isLoggedIn));
+    dispatch(fetchAffiliateDetails(isLoggedIn.token, isLoggedIn.user_id));
+
     return <Redirect to="/" />;
   } else
     return (

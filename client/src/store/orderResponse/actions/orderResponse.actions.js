@@ -1,8 +1,7 @@
 export const updateOrderResponse = payload => {
-  console.log("from action creator ", payload);
   return {
     type: "UPDATE_ORDER_RESPONSE",
-    payload: payload
+    payload: payload,
   };
 };
 

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { API_ORIGIN_URL } from "../config";
+import { fetchAffiliateDetails } from "../store/affiliateDetails/actions/affiliateDetails.actions";
 
 const RegisterAffiliate = () => {
   const [response, setResponse] = useState(null);
   const isLoggedIn = useSelector(state => state.isLoggedIn);
-
+  const dispatch = useDispatch();
   const handleRegister = e => {
     e.preventDefault();
     let formData = {
@@ -22,7 +23,10 @@ const RegisterAffiliate = () => {
       body: JSON.stringify(formData)
     })
       .then(data => data.json())
-      .then(result => setResponse(result))
+      .then(result => {
+        setResponse(result);
+        dispatch(fetchAffiliateDetails(isLoggedIn.token, isLoggedIn.user_id));
+      })
       .catch(err => console.log(err));
   };
 

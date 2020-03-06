@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { handleChange } from "../logic/signupLogic";
 import { GiMale, GiFemale } from "react-icons/gi";
 import { signup } from "../store/api/auth";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const Signup = props => {
   const initialErrors = {
@@ -41,7 +41,7 @@ const Signup = props => {
   };
 
   return (
-    <div className="container " style={{ height: "90vh" }}>
+    <div className="container py-5">
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-md-6 col-sm-12 d-flex justify-content-center">
           <form
@@ -88,27 +88,27 @@ const Signup = props => {
               <label className="mr-3 mb-0">
                 Gender<span className="text-danger">*</span>
               </label>
-              <div class="form-check form-check-inline">
+              <div className="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="gender"
                   value="male"
                   required
                 />
-                <label class="form-check-label">
+                <label className="form-check-label">
                   Male <GiMale />
                 </label>
               </div>
-              <div class="form-check form-check-inline">
+              <div className="form-check form-check-inline">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="radio"
                   name="gender"
                   value="female"
                   required
                 />
-                <label class="form-check-label">
+                <label className="form-check-label">
                   Female <GiFemale />
                 </label>
               </div>

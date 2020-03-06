@@ -32,7 +32,6 @@ export const updateCartItems = (payload, isLoggedIn) => {
 
 export const addToCart = (product, cart, isLoggedIn) => {
   let index;
-  console.log([...cart]);
 
   let newCart = [...cart];
   cart.map((item, idx) => {

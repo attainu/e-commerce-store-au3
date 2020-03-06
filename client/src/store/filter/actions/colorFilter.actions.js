@@ -23,7 +23,6 @@ export const addColorFilter = data => {
     });
     let { brandFilter, colorFilter, products } = getState();
     let filteredProduct = applyFilters(products, brandFilter, colorFilter);
-
     dispatch({
       type: "UPDATE_FILTERED_PRODUCTS",
       payload: filteredProduct

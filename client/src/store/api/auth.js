@@ -1,5 +1,8 @@
 import { API_ORIGIN_URL } from "../../config";
-import { updateLoggedInUser } from "../isLoggedIn/actions/isLoggedIn.actions";
+import {
+  updateLoggedInUser,
+  reUpdateLoggedInUser
+} from "../isLoggedIn/actions/isLoggedIn.actions";
 import { updatesignupResponse } from "../signupResponse/actions/signupResponse.actions";
 export const login = (email, password, dispatch) => {
   let url = `${API_ORIGIN_URL}/auth/login`;
@@ -7,7 +10,6 @@ export const login = (email, password, dispatch) => {
     email: email,
     password: password
   };
-  console.log(data);
   fetch(url, {
     method: "POST",
     headers: {
@@ -24,7 +26,6 @@ export const login = (email, password, dispatch) => {
 
 export const signup = (form, dispatch) => {
   let url = `${API_ORIGIN_URL}/auth/signup`;
-  console.log(form);
   fetch(url, {
     method: "POST",
     headers: {
@@ -35,5 +36,52 @@ export const signup = (form, dispatch) => {
     .then(data => data.json())
     .then(json => {
       dispatch(updatesignupResponse(json));
+    });
+};
+
+export const fetchProfile = (token, dispatch) => {
+  const url = `${API_ORIGIN_URL}/profile`;
+  fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(data => data.json())
+    .then(result => dispatch(reUpdateLoggedInUser(result)))
+    .catch(err => console.log(err));
+};
+
+export const updatePassword = (form, setResponse, token) => {
+  const url = `${API_ORIGIN_URL}/profile`;
+
+  fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+      password: form.password
+    })
+  })
+    .then(response => response.json())
+    .then(data => setResponse(data));
+};
+
+export const updateProfile = (form, setResponse, token, dispatch) => {
+  const url = `${API_ORIGIN_URL}/profile`;
+
+  fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(form)
+  })
+    .then(response => response.json())
+    .then(data => {
+      setResponse(data);
+      fetchProfile(token, dispatch);
     });
 };

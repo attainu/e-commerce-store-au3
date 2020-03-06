@@ -1,19 +1,28 @@
 const orderResponseReducer = (
   orderResponse = {
     success: null,
-    error: null
+    error: null,
+    isLoading:false,
   },
   action
 ) => {
   if (action.type === "UPDATE_ORDER_RESPONSE") {
-    console.log("from reducer ", action.payload);
-    return (orderResponse = action.payload);
+    let payload = {...action.payload, isLoading:false};
+    return (orderResponse = payload);
+  }
+
+  if(action.type === "STARTED_ORDER_REQUEST"){
+    return {
+      ...orderResponse,
+      isLoading:true
+    }
   }
 
   if (action.type === "CLEAR_ORDER_RESPONSE") {
     return (orderResponse = {
       success: null,
-      error: null
+      error: null,
+      isLoading:false
     });
   }
 
