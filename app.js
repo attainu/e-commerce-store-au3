@@ -33,11 +33,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-//build mode
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/public/index.html"));
-});
-
 // Get Routes
 let product = require("./server/routes/products");
 let categories = require("./server/routes/categories");
@@ -61,3 +56,8 @@ app.use("/affiliations", verifyToken, affiliaions);
 app.use("/orders", verifyToken, orders);
 app.use("/wishlist", verifyToken, wishlist);
 app.use("/profile", verifyToken, profile);
+
+//build mode
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/public/index.html"));
+});
