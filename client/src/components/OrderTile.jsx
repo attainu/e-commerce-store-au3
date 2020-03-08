@@ -42,7 +42,7 @@ const OnWishlist = ({ product, wishlist, product_id }) => {
       <div className="col-3 d-flex justify-content-center align-items-center">
         <AddToWishlist
           wishlist={wishlist}
-          product_id={product_id}
+          product={product}
           onWishlist={true}
         />
       </div>

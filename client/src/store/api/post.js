@@ -15,7 +15,6 @@ export const uploadCart = (cart, user_id, token) => {
     cart_items
   };
 
-
   const url = `${API_ORIGIN_URL}/cart`;
   fetch(url, {
     method: "POST",
@@ -39,8 +38,8 @@ export const placeOrder = (
   token
 ) => {
   store.dispatch({
-    type:"STARTED_ORDER_REQUEST",
-  })
+    type: "STARTED_ORDER_REQUEST"
+  });
   const url = `${API_ORIGIN_URL}/orders`;
   const body = {
     affiliate_name,
@@ -67,7 +66,6 @@ export const placeOrder = (
     .catch(err => console.log(err));
 };
 
-
 function timeout(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -84,7 +82,7 @@ export const uploadWishlist = async (wishlist, isLoggedIn) => {
     },
     body: JSON.stringify({ wishlist_items: w })
   }).then(res => {
-      res.json();
+    res.json();
   });
   await timeout(50);
   fetchWishlistItemsApi(store, isLoggedIn);
