@@ -6,6 +6,7 @@ import ImageLoader from "react-load-image";
 import { Link } from "react-router-dom";
 
 function ProductTile(props) {
+  console.log(props.product);
   const Preloader = () => {
     return (
       <div className="py-5 w-100 h-100 d-flex justify-content-center align-items-center">
@@ -67,7 +68,7 @@ function ProductTile(props) {
             </div>
             <div className="col-6 p-0">
               <AddToWishlist
-                product_id={props.product.product_id}
+                product={props.product}
                 wishlist={props.wishlist}
               />
             </div>

@@ -32,7 +32,7 @@ export const updateWishlistItems = (payload, isLoggedIn) => {
 };
 
 export const addToWishlist = (product, wishlist, isLoggedIn) => {
-  let newWishlist = [...wishlist, { product_id: product }];
+  let newWishlist = [...wishlist, product];
   return (dispatch, getState) => {
     dispatch({
       type: "ADD_TO_WISHLIST",

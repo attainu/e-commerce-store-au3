@@ -56,7 +56,7 @@ const ProductDetails = props => {
                   <div className="col-6">
                     <AddToWishlist
                       wishlist={wishlist}
-                      product_id={p.product_id}
+                      product={p}
                     />
                   </div>
                 </div>

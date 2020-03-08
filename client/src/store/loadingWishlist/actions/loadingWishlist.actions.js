@@ -1,7 +1,8 @@
-export const wishlistLoading = () => {
+export const wishlistLoading = isLoggedIn => {
+  const status = isLoggedIn.token ? true : false;
   return {
     type: "LOADING",
-    payload: true
+    payload: status
   };
 };
 

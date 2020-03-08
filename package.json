@@ -6,10 +6,11 @@
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node app.js",
-    "server": "nodemon app.js",
+    "server": "node app.js",
     "client": "npm start --prefix client",
     "install-all": "concurrently \"npm install\" \"npm run client-install\"",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "gaurav verma",
   "license": "ISC",
@@ -25,5 +26,8 @@
     "pg-hstore": "^2.3.3",
     "recharts": "^2.0.0-beta.1",
     "sequelize": "^5.21.3"
+  },
+  "engines": {
+    "node": "12.16.1"
   }
 }
