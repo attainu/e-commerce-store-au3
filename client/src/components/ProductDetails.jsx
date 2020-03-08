@@ -46,14 +46,14 @@ const ProductDetails = props => {
               </div>
               <div className="col-12">
                 <div className="row py-5">
-                  <div className="col-6">
+                  <div className="col-6 pr-0">
                     <AddToCart
                       product={p}
                       product_id={p.product_id}
                       cart={cart}
                     />
                   </div>
-                  <div className="col-6">
+                  <div className="col-6 pl-0">
                     <AddToWishlist
                       wishlist={wishlist}
                       product={p}

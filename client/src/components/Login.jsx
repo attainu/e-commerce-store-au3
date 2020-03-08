@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/api/auth";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { fetchCartItems } from "../store/cart/actions/cart.actions";
 import { fetchWishListItems } from "../store/wishlist/actions/wishlist.actions";
@@ -57,6 +57,13 @@ const Login = props => {
               <button type="submit" className="btn btn-primary">
                 Submit
               </button>
+              <p className="text-center text-muted mt-4">
+                Not Registered ?{"  "}
+                <Link className="text-primary" to="/signup">
+                  Sign Up
+                </Link>{"  "}
+                Now
+              </p>
               {isLoggedIn.error ? (
                 <p className="text-danger font-weight-bold mt-3 mb-0">
                   {isLoggedIn.message}

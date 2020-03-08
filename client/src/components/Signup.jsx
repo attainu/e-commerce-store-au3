@@ -180,6 +180,12 @@ const Signup = props => {
             <button type="submit" className="btn btn-primary">
               Submit
             </button>
+            <p className="text-center text-muted mt-4">
+              Already Registered ? Go To {"  "}
+              <Link className="text-primary" to="/login">
+                Login
+              </Link>
+            </p>
             {signupResponse.message ? (
               <p
                 className={` font-weight-bold mt-3
